@@ -10,6 +10,8 @@
   ],
   "mixins": [
     "SchematicannonBlockEntityMixin",
-    "ae2.DriveBlockEntityMixin"
+    "ae2.block.DriveBlockMixin",
+    "ae2.blockentity.DriveBlockEntityMixin",
+    "ae2.blockentity.MolecularAssemblerBlockEntityMixin"
   ]
 }

@@ -1,4 +1,4 @@
-package com.sshakusora.create_enhanced_schematicannon.mixin.ae2;
+package com.sshakusora.create_enhanced_schematicannon.mixin.ae2.blockentity;
 
 import appeng.api.upgrades.IUpgradeInventory;
 import appeng.blockentity.storage.DriveBlockEntity;
@@ -17,7 +17,6 @@ import java.util.List;
 
 @Mixin(DriveBlockEntity.class)
 public class DriveBlockEntityMixin implements ISpecialBlockEntityItemRequirement, IPartialSafeNBT {
-    //TODO: rotate and mirror.
     @Override
     public ItemRequirement getRequiredItems(BlockState state) {
         DriveBlockEntity self = (DriveBlockEntity) (Object) this;
