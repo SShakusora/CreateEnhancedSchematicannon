@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.sshakusora.create_enhanced_schematicannon.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "mixins.create_enhanced_schematicannon.refmap.json",
+  "server": [
+  ],
+  "client": [
+  ],
+  "mixins": [
+    "SchematicannonBlockEntityMixin",
+    "ae2.DriveBlockEntityMixin"
+  ]
+}
