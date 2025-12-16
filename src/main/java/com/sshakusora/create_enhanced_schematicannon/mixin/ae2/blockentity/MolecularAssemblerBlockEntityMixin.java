@@ -78,9 +78,7 @@ public class MolecularAssemblerBlockEntityMixin implements ISpecialBlockEntityIt
                 upgradesTag.add(upgradeTag);
             }
 
-            if (!upgradesTag.isEmpty()) {
-                out.put("upgrades", upgradesTag);
-            }
+            if (!upgradesTag.isEmpty()) out.put("upgrades", upgradesTag);
         }
     }
 }

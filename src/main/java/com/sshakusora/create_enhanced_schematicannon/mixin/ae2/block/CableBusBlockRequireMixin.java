@@ -10,8 +10,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(CableBusBlock.class)
-public abstract class CableBusBlockMixin extends Block implements ISpecialBlockItemRequirement {
-    public CableBusBlockMixin(BlockBehaviour.Properties properties) {
+public abstract class CableBusBlockRequireMixin extends Block implements ISpecialBlockItemRequirement {
+    public CableBusBlockRequireMixin(BlockBehaviour.Properties properties) {
         super(properties);
     }
 
