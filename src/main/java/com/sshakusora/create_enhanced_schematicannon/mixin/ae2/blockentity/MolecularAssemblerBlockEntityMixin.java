@@ -29,7 +29,7 @@ public class MolecularAssemblerBlockEntityMixin implements ISpecialBlockEntityIt
 
         List<ItemStack> consumed = new ArrayList<>();
 
-        if (!this.patternInv.isEmpty()) {
+        if (!self.acceptsPlans()) {
             consumed.add(new ItemStack(AEItems.BLANK_PATTERN));
         }
 
@@ -50,7 +50,7 @@ public class MolecularAssemblerBlockEntityMixin implements ISpecialBlockEntityIt
         MolecularAssemblerBlockEntity self = (MolecularAssemblerBlockEntity) (Object) this;
         CompoundTag invTag = new CompoundTag();
 
-        if (!this.patternInv.isEmpty()) {
+        if (!self.acceptsPlans()) {
             CompoundTag itemTag = new CompoundTag();
             this.patternInv.getStackInSlot(0).save(itemTag);
             int idx = self.getInternalInventory().size() - 1;
