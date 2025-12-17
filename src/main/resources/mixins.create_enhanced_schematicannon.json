@@ -12,9 +12,18 @@
     "SchematicannonBlockEntityMixin",
     "ae2.block.CableBusBlockLaunchMixin",
     "ae2.block.CableBusBlockRequireMixin",
+    "ae2.block.ChargerBlockMixin",
+    "ae2.block.CraftingMonitorBlockMixin",
+    "ae2.block.CrankBlockMixin",
     "ae2.block.DriveBlockMixin",
+    "ae2.block.GrowthAcceleratorBlockMixin",
+    "ae2.block.InscriberBlockMixin",
+    "ae2.block.PatternProviderBlockMixin",
     "ae2.blockentity.CableBusBlockEntityMixin",
+    "ae2.blockentity.CondenserBlockEntityMixin",
     "ae2.blockentity.DriveBlockEntityMixin",
-    "ae2.blockentity.MolecularAssemblerBlockEntityMixin"
+    "ae2.blockentity.InscriberBlockEntityMixin",
+    "ae2.blockentity.MolecularAssemblerBlockEntityMixin",
+    "ae2.blockentity.PatternProviderBlockEntityMixin"
   ]
 }
