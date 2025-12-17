@@ -8,7 +8,6 @@ import com.simibubi.create.content.schematics.requirement.ISpecialBlockEntityIte
 import com.simibubi.create.content.schematics.requirement.ItemRequirement;
 import com.simibubi.create.foundation.utility.IPartialSafeNBT;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Final;
@@ -21,7 +20,7 @@ import java.util.List;
 @Mixin(MolecularAssemblerBlockEntity.class)
 public class MolecularAssemblerBlockEntityMixin implements ISpecialBlockEntityItemRequirement,IPartialSafeNBT {
     @Final
-    @Shadow private AppEngInternalInventory patternInv;
+    @Shadow private AppEngInternalInventory gridInv;
 
     @Override
     public ItemRequirement getRequiredItems(BlockState state) {
@@ -48,37 +47,11 @@ public class MolecularAssemblerBlockEntityMixin implements ISpecialBlockEntityIt
     @Override
     public void writeSafe(CompoundTag out) {
         MolecularAssemblerBlockEntity self = (MolecularAssemblerBlockEntity) (Object) this;
-        CompoundTag invTag = new CompoundTag();
+        CompoundTag tag = new CompoundTag();
 
-        if (!self.acceptsPlans()) {
-            CompoundTag itemTag = new CompoundTag();
-            this.patternInv.getStackInSlot(0).save(itemTag);
-            int idx = self.getInternalInventory().size() - 1;
+        this.gridInv.clear();
 
-            invTag.put("item" + idx, itemTag);
-        }
-
-        if (!invTag.isEmpty()) {
-            out.put("inv", invTag);
-        }
-
-        IUpgradeInventory upgrades = self.getUpgrades();
-        if (!upgrades.isEmpty()) {
-            ListTag upgradesTag = new ListTag();
-
-            for (int i = 0; i < upgrades.size(); i++) {
-                ItemStack stack = upgrades.getStackInSlot(i);
-                if (stack.isEmpty())
-                    continue;
-
-                CompoundTag upgradeTag = new CompoundTag();
-                upgradeTag.putInt("Slot", i);
-                stack.save(upgradeTag);
-
-                upgradesTag.add(upgradeTag);
-            }
-
-            if (!upgradesTag.isEmpty()) out.put("upgrades", upgradesTag);
-        }
+        self.saveAdditional(tag);
+        out.merge(tag);
     }
 }
