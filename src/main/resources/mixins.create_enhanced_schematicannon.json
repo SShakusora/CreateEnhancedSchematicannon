@@ -10,8 +10,9 @@
   ],
   "mixins": [
     "SchematicannonBlockEntityMixin",
-    "ae2.block.CableBusBlockLaunchMixin",
     "ae2.block.CableBusBlockRequireMixin",
+    "ae2.blockentity.accessor.CableBusContainerAccessor",
+    "ae2.blockentity.accessor.CableBusStorageAccessor",
     "ae2.block.ChargerBlockMixin",
     "ae2.block.CraftingMonitorBlockMixin",
     "ae2.block.CrankBlockMixin",
