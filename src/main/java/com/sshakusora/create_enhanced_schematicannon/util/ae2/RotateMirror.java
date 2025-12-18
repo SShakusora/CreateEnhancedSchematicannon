@@ -11,6 +11,9 @@ public class RotateMirror {
         if (state.hasProperty(BlockStateProperties.FACING)) {
             Direction dir = state.getValue(BlockStateProperties.FACING);
             return state.setValue(BlockStateProperties.FACING, rotation.rotate(dir));
+        } else if (state.hasProperty(BlockStateProperties.HORIZONTAL_FACING)) {
+            Direction dir = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
+            return state.setValue(BlockStateProperties.HORIZONTAL_FACING, rotation.rotate(dir));
         }
         return state;
     }
@@ -19,6 +22,9 @@ public class RotateMirror {
         if (state.hasProperty(BlockStateProperties.FACING)) {
             Rotation r = mirror.getRotation(state.getValue(BlockStateProperties.FACING));
             return rotate(state, r);
+        } else if (state.hasProperty(BlockStateProperties.HORIZONTAL_FACING)) {
+            Direction dir = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
+            return state.setValue(BlockStateProperties.HORIZONTAL_FACING, mirror.mirror(dir));
         }
         return state;
     }
