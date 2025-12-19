@@ -9,7 +9,6 @@
   "client": [
   ],
   "mixins": [
-    "SchematicannonBlockEntityMixin",
     "ae2.block.CableBusBlockMixin",
     "ae2.block.ChargerBlockMixin",
     "ae2.block.ChestBlockMixin",
