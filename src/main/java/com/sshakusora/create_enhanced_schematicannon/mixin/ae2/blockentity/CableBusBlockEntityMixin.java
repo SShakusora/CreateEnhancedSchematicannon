@@ -117,6 +117,7 @@ public class CableBusBlockEntityMixin implements ISpecialBlockEntityItemRequirem
 
         for (Direction dir : Direction.values()) {
             IPart part = self.getPart(dir);
+            Direction mapped = MapDirection.mapDir(ROTATION, MIRROR, dir);
             if(part != null) {
                 if(part instanceof InterfacePart interfacePart) {
                     GenericStackInv storage = interfacePart.getStorage();
@@ -127,13 +128,11 @@ public class CableBusBlockEntityMixin implements ISpecialBlockEntityItemRequirem
                 } else if(part instanceof AnnihilationPlanePart annihilationPlanePart) {
                     annihilationPlanePart.readFromNBT(new CompoundTag());
                 }
-                Direction mapped = MapDirection.mapDir(ROTATION, MIRROR, dir);
                 ((CableBusStorageAccessor) newCbAc.getStorage()).invokeSetPart(mapped, part);
             }
 
             IFacadePart f = oldFacades.getFacade(dir);
             if (f != null) {
-                Direction mapped = MapDirection.mapDir(ROTATION, MIRROR, dir);
                 newFacades.addFacade(new FacadePart(f.getItemStack(), mapped));
             }
         }
@@ -143,7 +142,7 @@ public class CableBusBlockEntityMixin implements ISpecialBlockEntityItemRequirem
             ((CableBusStorageAccessor) newCbAc.getStorage()).invokeSetCenter((ICablePart) part);
         }
 
-        newCable.getCableBus().updateConnections();
+        newCb.updateConnections();
         newCable.saveAdditional(tag);
         out.merge(tag);
     }

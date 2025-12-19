@@ -1,9 +1,9 @@
-package com.sshakusora.create_enhanced_schematicannon.mixin.moonlight.blockentity;
+package com.sshakusora.create_enhanced_schematicannon.mixin.amendments.blockentity;
 
 import com.simibubi.create.content.schematics.requirement.ISpecialBlockEntityItemRequirement;
 import com.simibubi.create.content.schematics.requirement.ItemRequirement;
 import com.simibubi.create.foundation.utility.IPartialSafeNBT;
-import net.mehvahdjukaar.moonlight.api.block.ItemDisplayTile;
+import net.mehvahdjukaar.amendments.common.tile.HangingSignTileExtension;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
@@ -12,17 +12,18 @@ import org.spongepowered.asm.mixin.Mixin;
 import java.util.ArrayList;
 import java.util.List;
 
-@Mixin(ItemDisplayTile.class)
-public class ItemDisplayTileMixin implements ISpecialBlockEntityItemRequirement, IPartialSafeNBT {
+@Mixin(HangingSignTileExtension.class)
+public class HangingSignTileExtensionMixin implements ISpecialBlockEntityItemRequirement, IPartialSafeNBT {
     @Override
     public ItemRequirement getRequiredItems(BlockState state) {
-        ItemDisplayTile self = (ItemDisplayTile) (Object) this;
+        HangingSignTileExtension self = (HangingSignTileExtension) (Object) this;
 
         List<ItemStack> consumed = new ArrayList<>();
-        for(int i = 0; i < self.getContainerSize(); ++i) {
-            if(self.getItem(i) != null) {
-                consumed.add(self.getItem(i));
-            }
+        if(self.getBackItem() != null) {
+            consumed.add(self.getBackItem());
+        }
+        if(self.getFrontItem() != null) {
+            consumed.add(self.getFrontItem());
         }
 
         return consumed.isEmpty() ? ItemRequirement.NONE : new ItemRequirement(ItemRequirement.ItemUseType.CONSUME, consumed);
@@ -30,13 +31,14 @@ public class ItemDisplayTileMixin implements ISpecialBlockEntityItemRequirement,
 
     @Override
     public void writeSafe(CompoundTag out) {
-        ItemDisplayTile self = (ItemDisplayTile) (Object) this;
+        HangingSignTileExtension self = (HangingSignTileExtension) (Object) this;
         CompoundTag tag = new CompoundTag();
 
-        for(int i = 0; i < self.getContainerSize(); ++i) {
-            if(self.getItem(i) != null) {
-                self.setItem(i, new ItemStack(self.getItem(i).getItem()));
-            }
+        if(self.getBackItem() != null) {
+            self.setBackItem(new ItemStack(self.getBackItem().getItem()));
+        }
+        if(self.getFrontItem() != null) {
+            self.setFrontItem(new ItemStack(self.getFrontItem().getItem()));
         }
 
         self.saveAdditional(tag);

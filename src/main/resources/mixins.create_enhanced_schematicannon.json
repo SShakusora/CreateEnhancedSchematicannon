@@ -22,6 +22,7 @@
     "ae2.block.IOPortBlockMixin",
     "ae2.block.LightDetectorBlockMixin",
     "ae2.block.PatternProviderBlockMixin",
+    "ae2.block.QuartzFixtureBlockMixin",
     "ae2.block.SkyChestBlockMixin",
     "ae2.block.SpatialAnchorBlockMixin",
     "ae2.block.SpatialIOPortBlockMixin",
@@ -40,8 +41,10 @@
     "ae2.blockentity.WirelessAccessPointBlockEntityMixin",
     "ae2.blockentity.accessor.CableBusContainerAccessor",
     "ae2.blockentity.accessor.CableBusStorageAccessor",
+    "amendments.blockentity.HangingSignTileExtensionMixin",
     "moonlight.blockentity.ItemDisplayTileMixin",
     "supplementaries.block.FrameBlockMixin",
+    "supplementaries.block.FrameBraceBlockMixin",
     "supplementaries.block.PedestalBlockMixin",
     "supplementaries.blockentity.FrameBlockTileMixin"
   ]
