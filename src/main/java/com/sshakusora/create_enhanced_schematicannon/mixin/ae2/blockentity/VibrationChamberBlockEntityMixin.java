@@ -6,6 +6,7 @@ import appeng.core.definitions.AEBlockEntities;
 import com.simibubi.create.api.schematic.nbt.PartialSafeNBT;
 import com.simibubi.create.api.schematic.requirement.SpecialBlockEntityItemRequirement;
 import com.simibubi.create.content.schematics.requirement.ItemRequirement;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
@@ -37,13 +38,13 @@ public class VibrationChamberBlockEntityMixin implements SpecialBlockEntityItemR
     }
 
     @Override
-    public void writeSafe(CompoundTag out) {
+    public void writeSafe(CompoundTag out, HolderLookup.Provider provider) {
         VibrationChamberBlockEntity self = (VibrationChamberBlockEntity) (Object) this;
         CompoundTag tag = new CompoundTag();
 
         self.getInternalInventory().clear();
         this.setRemainingFuelTicks(0.0D);
-        VibrationChamberBlockEntity vibrationChamber = new VibrationChamberBlockEntity(AEBlockEntities.VIBRATION_CHAMBER, self.getBlockPos(), self.getBlockState());
+        VibrationChamberBlockEntity vibrationChamber = new VibrationChamberBlockEntity(AEBlockEntities.VIBRATION_CHAMBER.get(), self.getBlockPos(), self.getBlockState());
         IUpgradeInventory upgrades = self.getUpgrades();
         if (!(upgrades == null)) {
             for (int i = 0; i < upgrades.size(); i++) {
@@ -53,7 +54,7 @@ public class VibrationChamberBlockEntityMixin implements SpecialBlockEntityItemR
             }
         }
 
-        vibrationChamber.saveAdditional(tag);
+        vibrationChamber.saveAdditional(tag, provider);
         out.merge(tag);
     }
 }

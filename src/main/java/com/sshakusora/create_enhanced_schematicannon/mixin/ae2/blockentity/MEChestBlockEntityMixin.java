@@ -1,9 +1,10 @@
 package com.sshakusora.create_enhanced_schematicannon.mixin.ae2.blockentity;
 
-import appeng.blockentity.storage.ChestBlockEntity;
+import appeng.blockentity.storage.MEChestBlockEntity;
 import com.simibubi.create.api.schematic.nbt.PartialSafeNBT;
 import com.simibubi.create.api.schematic.requirement.SpecialBlockEntityItemRequirement;
 import com.simibubi.create.content.schematics.requirement.ItemRequirement;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.ItemStack;
@@ -14,11 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-@Mixin(ChestBlockEntity.class)
-public class ChestBlockEntityMixin implements SpecialBlockEntityItemRequirement, PartialSafeNBT {
+@Mixin(MEChestBlockEntity.class)
+public class MEChestBlockEntityMixin implements SpecialBlockEntityItemRequirement, PartialSafeNBT {
     @Override
     public ItemRequirement getRequiredItems(BlockState state) {
-        ChestBlockEntity self = (ChestBlockEntity) (Object) this;
+        MEChestBlockEntity self = (MEChestBlockEntity) (Object) this;
 
         List<ItemStack> consumed = new ArrayList<>();
 
@@ -31,11 +32,11 @@ public class ChestBlockEntityMixin implements SpecialBlockEntityItemRequirement,
     }
 
     @Override
-    public void writeSafe(CompoundTag out) {
-        ChestBlockEntity self = (ChestBlockEntity) (Object) this;
+    public void writeSafe(CompoundTag out, HolderLookup.Provider provider) {
+        MEChestBlockEntity self = (MEChestBlockEntity) (Object) this;
         Set<String> keysToRemove = Set.of("keys", "ic", "amts");
         CompoundTag tag = new CompoundTag();
-        self.saveAdditional(tag);
+            self.saveAdditional(tag, provider);
 
         if (tag.contains("inv", Tag.TAG_COMPOUND)) {
             CompoundTag inv = tag.getCompound("inv");

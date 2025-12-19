@@ -6,6 +6,7 @@ import appeng.util.inv.AppEngInternalInventory;
 import com.simibubi.create.api.schematic.nbt.PartialSafeNBT;
 import com.simibubi.create.api.schematic.requirement.SpecialBlockEntityItemRequirement;
 import com.simibubi.create.content.schematics.requirement.ItemRequirement;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
@@ -40,7 +41,7 @@ public class CondenserBlockEntityMixin implements SpecialBlockEntityItemRequirem
     }
 
     @Override
-    public void writeSafe(CompoundTag out) {
+    public void writeSafe(CompoundTag out, HolderLookup.Provider provider) {
         CondenserBlockEntity self = (CondenserBlockEntity) (Object) this;
         CompoundTag tag = new CompoundTag();
 
@@ -48,7 +49,7 @@ public class CondenserBlockEntityMixin implements SpecialBlockEntityItemRequirem
         this.inputSlot.clear();
         this.setStoredPower(0.0D);
 
-        self.saveAdditional(tag);
+        self.saveAdditional(tag, provider);
         out.merge(tag);
     }
 }

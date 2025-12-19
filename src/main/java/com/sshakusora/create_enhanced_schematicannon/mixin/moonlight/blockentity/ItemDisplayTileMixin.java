@@ -4,6 +4,7 @@ import com.simibubi.create.api.schematic.nbt.PartialSafeNBT;
 import com.simibubi.create.api.schematic.requirement.SpecialBlockEntityItemRequirement;
 import com.simibubi.create.content.schematics.requirement.ItemRequirement;
 import net.mehvahdjukaar.moonlight.api.block.ItemDisplayTile;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
@@ -29,7 +30,7 @@ public class ItemDisplayTileMixin implements SpecialBlockEntityItemRequirement, 
     }
 
     @Override
-    public void writeSafe(CompoundTag out) {
+    public void writeSafe(CompoundTag out, HolderLookup.Provider provider) {
         ItemDisplayTile self = (ItemDisplayTile) (Object) this;
         CompoundTag tag = new CompoundTag();
 
@@ -39,7 +40,7 @@ public class ItemDisplayTileMixin implements SpecialBlockEntityItemRequirement, 
             }
         }
 
-        self.saveAdditional(tag);
+        tag = self.saveCustomAndMetadata(provider);
         out.merge(tag);
     }
 }

@@ -1,6 +1,6 @@
 package com.sshakusora.create_enhanced_schematicannon.mixin.ae2.block;
 
-import appeng.block.storage.ChestBlock;
+import appeng.block.storage.MEChestBlock;
 import com.sshakusora.create_enhanced_schematicannon.util.ae2.SpinRotateMirror;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Mirror;
@@ -8,9 +8,9 @@ import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 
-@Mixin(ChestBlock.class)
-public abstract class ChestBlockMixin extends Block {
-    public ChestBlockMixin(Properties p_49795_) {
+@Mixin(MEChestBlock.class)
+public abstract class MEChestBlockMixin extends Block {
+    public MEChestBlockMixin(Properties p_49795_) {
         super(p_49795_);
     }
 

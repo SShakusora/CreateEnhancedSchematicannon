@@ -25,6 +25,7 @@ import com.sshakusora.create_enhanced_schematicannon.mixin.ae2.blockentity.acces
 import com.sshakusora.create_enhanced_schematicannon.mixin.ae2.blockentity.accessor.CableBusStorageAccessor;
 import com.sshakusora.create_enhanced_schematicannon.util.MapDirection;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Mirror;
@@ -105,11 +106,11 @@ public class CableBusBlockEntityMixin implements SpecialBlockEntityItemRequireme
     }
 
     @Override
-    public void writeSafe(CompoundTag out) {
+    public void writeSafe(CompoundTag out, HolderLookup.Provider provider) {
         CableBusBlockEntity self = (CableBusBlockEntity) (Object) this;
         CompoundTag tag = new CompoundTag();
 
-        CableBusBlockEntity newCable = new CableBusBlockEntity(AEBlockEntities.CABLE_BUS, self.getBlockPos(), self.getBlockState());
+        CableBusBlockEntity newCable = new CableBusBlockEntity(AEBlockEntities.CABLE_BUS.get(), self.getBlockPos(), self.getBlockState());
         CableBusContainer newCb = newCable.getCableBus();
         CableBusContainerAccessor newCbAc = (CableBusContainerAccessor) newCb;
         IFacadeContainer oldFacades = self.getFacadeContainer();
@@ -126,14 +127,14 @@ public class CableBusBlockEntityMixin implements SpecialBlockEntityItemRequireme
                     GenericStackInv storage = patternProviderPart.getLogic().getReturnInv();
                     storage.clear();
                 } else if(part instanceof AnnihilationPlanePart annihilationPlanePart) {
-                    annihilationPlanePart.readFromNBT(new CompoundTag());
+                    annihilationPlanePart.readFromNBT(new CompoundTag(), provider);
                 }
                 ((CableBusStorageAccessor) newCbAc.getStorage()).invokeSetPart(mapped, part);
             }
 
             IFacadePart f = oldFacades.getFacade(dir);
             if (f != null) {
-                newFacades.addFacade(new FacadePart(f.getItemStack(), mapped));
+                newFacades.addFacade(new FacadePart(f.getBlockState(), mapped));
             }
         }
 
@@ -143,7 +144,7 @@ public class CableBusBlockEntityMixin implements SpecialBlockEntityItemRequireme
         }
 
         newCb.updateConnections();
-        newCable.saveAdditional(tag);
+        newCable.saveAdditional(tag, provider);
         out.merge(tag);
     }
 }

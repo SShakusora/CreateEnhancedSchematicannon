@@ -8,6 +8,7 @@ import com.sshakusora.create_enhanced_schematicannon.CES;
 import com.sshakusora.create_enhanced_schematicannon.util.MapDirection;
 import net.mehvahdjukaar.supplementaries.common.block.tiles.FrameBlockTile;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Mirror;
@@ -42,7 +43,7 @@ public class FrameBlockTileMixin implements SpecialBlockEntityItemRequirement, P
     }
 
     @Override
-    public void writeSafe(CompoundTag out) {
+    public void writeSafe(CompoundTag out, HolderLookup.Provider provider) {
         FrameBlockTile self = (FrameBlockTile) (Object) this;
         CompoundTag tag = new CompoundTag();
 
@@ -65,7 +66,7 @@ public class FrameBlockTileMixin implements SpecialBlockEntityItemRequirement, P
         }
 
         self.setHeldBlock(held);
-        self.saveAdditional(tag);
+        tag = self.saveCustomAndMetadata(provider);
         out.merge(tag);
     }
 }
