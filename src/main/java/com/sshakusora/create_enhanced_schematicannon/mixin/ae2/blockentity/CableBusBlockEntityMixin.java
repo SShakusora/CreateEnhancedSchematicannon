@@ -18,9 +18,9 @@ import appeng.parts.automation.UpgradeablePart;
 import appeng.parts.crafting.PatternProviderPart;
 import appeng.parts.misc.InterfacePart;
 import com.simibubi.create.CreateClient;
-import com.simibubi.create.content.schematics.requirement.ISpecialBlockEntityItemRequirement;
+import com.simibubi.create.api.schematic.nbt.PartialSafeNBT;
+import com.simibubi.create.api.schematic.requirement.SpecialBlockEntityItemRequirement;
 import com.simibubi.create.content.schematics.requirement.ItemRequirement;
-import com.simibubi.create.foundation.utility.IPartialSafeNBT;
 import com.sshakusora.create_enhanced_schematicannon.mixin.ae2.blockentity.accessor.CableBusContainerAccessor;
 import com.sshakusora.create_enhanced_schematicannon.mixin.ae2.blockentity.accessor.CableBusStorageAccessor;
 import com.sshakusora.create_enhanced_schematicannon.util.MapDirection;
@@ -38,7 +38,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Mixin(CableBusBlockEntity.class)
-public class CableBusBlockEntityMixin implements ISpecialBlockEntityItemRequirement, IPartialSafeNBT {
+public class CableBusBlockEntityMixin implements SpecialBlockEntityItemRequirement, PartialSafeNBT {
     @Unique private final StructurePlaceSettings SETTINGS = CreateClient.SCHEMATIC_HANDLER.getTransformation().toSettings();
     @Unique private final Mirror MIRROR = SETTINGS.getMirror();
     @Unique private final Rotation ROTATION = SETTINGS.getRotation();

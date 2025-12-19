@@ -2,9 +2,9 @@ package com.sshakusora.create_enhanced_schematicannon.mixin.ae2.blockentity;
 
 import appeng.api.upgrades.IUpgradeInventory;
 import appeng.blockentity.misc.InterfaceBlockEntity;
-import com.simibubi.create.content.schematics.requirement.ISpecialBlockEntityItemRequirement;
+import com.simibubi.create.api.schematic.nbt.PartialSafeNBT;
+import com.simibubi.create.api.schematic.requirement.SpecialBlockEntityItemRequirement;
 import com.simibubi.create.content.schematics.requirement.ItemRequirement;
-import com.simibubi.create.foundation.utility.IPartialSafeNBT;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Mixin(InterfaceBlockEntity.class)
-public class InterfaceBlockEntityMixin implements ISpecialBlockEntityItemRequirement, IPartialSafeNBT {
+public class InterfaceBlockEntityMixin implements SpecialBlockEntityItemRequirement, PartialSafeNBT {
     @Override
     public ItemRequirement getRequiredItems(BlockState state) {
         InterfaceBlockEntity self = (InterfaceBlockEntity) (Object) this;

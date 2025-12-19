@@ -1,9 +1,9 @@
 package com.sshakusora.create_enhanced_schematicannon.mixin.supplementaries.blockentity;
 
 import com.simibubi.create.CreateClient;
-import com.simibubi.create.content.schematics.requirement.ISpecialBlockEntityItemRequirement;
+import com.simibubi.create.api.schematic.nbt.PartialSafeNBT;
+import com.simibubi.create.api.schematic.requirement.SpecialBlockEntityItemRequirement;
 import com.simibubi.create.content.schematics.requirement.ItemRequirement;
-import com.simibubi.create.foundation.utility.IPartialSafeNBT;
 import com.sshakusora.create_enhanced_schematicannon.CES;
 import com.sshakusora.create_enhanced_schematicannon.util.MapDirection;
 import net.mehvahdjukaar.supplementaries.common.block.tiles.FrameBlockTile;
@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Mixin(FrameBlockTile.class)
-public class FrameBlockTileMixin implements ISpecialBlockEntityItemRequirement, IPartialSafeNBT {
+public class FrameBlockTileMixin implements SpecialBlockEntityItemRequirement, PartialSafeNBT {
     @Unique private final StructurePlaceSettings SETTINGS = CreateClient.SCHEMATIC_HANDLER.getTransformation().toSettings();
     @Unique private final Mirror MIRROR = SETTINGS.getMirror();
     @Unique private final Rotation ROTATION = SETTINGS.getRotation();
