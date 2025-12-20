@@ -31,6 +31,8 @@ import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
@@ -39,10 +41,6 @@ import java.util.List;
 
 @Mixin(CableBusBlockEntity.class)
 public class CableBusBlockEntityMixin implements SpecialBlockEntityItemRequirement, PartialSafeNBT {
-    @Unique private final StructurePlaceSettings SETTINGS = CreateClient.SCHEMATIC_HANDLER.getTransformation().toSettings();
-    @Unique private final Mirror MIRROR = SETTINGS.getMirror();
-    @Unique private final Rotation ROTATION = SETTINGS.getRotation();
-
     @Override
     public ItemRequirement getRequiredItems(BlockState state) {
         CableBusBlockEntity self = (CableBusBlockEntity) (Object) this;
@@ -117,7 +115,7 @@ public class CableBusBlockEntityMixin implements SpecialBlockEntityItemRequireme
 
         for (Direction dir : Direction.values()) {
             IPart part = self.getPart(dir);
-            Direction mapped = MapDirection.mapDir(ROTATION, MIRROR, dir);
+            Direction mapped = MapDirection.mapDir(getRotation(), getMirror(), dir);
             if(part != null) {
                 if(part instanceof InterfacePart interfacePart) {
                     GenericStackInv storage = interfacePart.getStorage();
@@ -145,5 +143,23 @@ public class CableBusBlockEntityMixin implements SpecialBlockEntityItemRequireme
         newCb.updateConnections();
         newCable.saveAdditional(tag);
         out.merge(tag);
+    }
+
+    @Unique
+    private StructurePlaceSettings getSettings() {
+        if (FMLEnvironment.dist == Dist.CLIENT) {
+            return CreateClient.SCHEMATIC_HANDLER.getTransformation().toSettings();
+        }
+        return new StructurePlaceSettings();
+    }
+
+    @Unique
+    private Mirror getMirror() {
+        return getSettings().getMirror();
+    }
+
+    @Unique
+    private Rotation getRotation() {
+        return getSettings().getRotation();
     }
 }

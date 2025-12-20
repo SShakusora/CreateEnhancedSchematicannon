@@ -15,6 +15,8 @@ import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
@@ -23,10 +25,6 @@ import java.util.List;
 
 @Mixin(FrameBlockTile.class)
 public class FrameBlockTileMixin implements SpecialBlockEntityItemRequirement, PartialSafeNBT {
-    @Unique private final StructurePlaceSettings SETTINGS = CreateClient.SCHEMATIC_HANDLER.getTransformation().toSettings();
-    @Unique private final Mirror MIRROR = SETTINGS.getMirror();
-    @Unique private final Rotation ROTATION = SETTINGS.getRotation();
-
     @Override
     public ItemRequirement getRequiredItems(BlockState state) {
         FrameBlockTile self = (FrameBlockTile) (Object) this;
@@ -51,7 +49,7 @@ public class FrameBlockTileMixin implements SpecialBlockEntityItemRequirement, P
             if (held.hasProperty(BlockStateProperties.FACING) || held.hasProperty(BlockStateProperties.HORIZONTAL_FACING)) {
                 Direction dir = held.hasProperty(BlockStateProperties.FACING) ? held.getValue(BlockStateProperties.FACING) : held.getValue(BlockStateProperties.HORIZONTAL_FACING);
                 if (dir != Direction.UP && dir != Direction.DOWN) {
-                    Direction newDir = MapDirection.mapDir(ROTATION, MIRROR, dir);
+                    Direction newDir = MapDirection.mapDir(getRotation(), getMirror(), dir);
 
                     if (held.hasProperty(BlockStateProperties.HORIZONTAL_FACING)) {
                         held = held.setValue(BlockStateProperties.HORIZONTAL_FACING, newDir);
@@ -67,5 +65,23 @@ public class FrameBlockTileMixin implements SpecialBlockEntityItemRequirement, P
         self.setHeldBlock(held);
         self.saveAdditional(tag);
         out.merge(tag);
+    }
+
+    @Unique
+    private StructurePlaceSettings getSettings() {
+        if (FMLEnvironment.dist == Dist.CLIENT) {
+            return CreateClient.SCHEMATIC_HANDLER.getTransformation().toSettings();
+        }
+        return new StructurePlaceSettings();
+    }
+
+    @Unique
+    private Mirror getMirror() {
+        return getSettings().getMirror();
+    }
+
+    @Unique
+    private Rotation getRotation() {
+        return getSettings().getRotation();
     }
 }
