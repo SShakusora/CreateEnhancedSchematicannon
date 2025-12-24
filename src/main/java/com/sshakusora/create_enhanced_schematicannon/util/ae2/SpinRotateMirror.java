@@ -1,6 +1,7 @@
 package com.sshakusora.create_enhanced_schematicannon.util.ae2;
 
 import appeng.api.orientation.IOrientationStrategy;
+import appeng.block.orientation.SpinMapping;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;

@@ -5,6 +5,7 @@ import appeng.core.definitions.AEBlockEntities;
 import com.simibubi.create.api.schematic.nbt.PartialSafeNBT;
 import com.simibubi.create.api.schematic.requirement.SpecialBlockEntityItemRequirement;
 import com.simibubi.create.content.schematics.requirement.ItemRequirement;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
@@ -31,11 +32,11 @@ public class WirelessAccessPointBlockEntityMixin implements SpecialBlockEntityIt
     }
 
     @Override
-    public void writeSafe(CompoundTag out) {
+    public void writeSafe(CompoundTag out, HolderLookup.Provider provider) {
         WirelessAccessPointBlockEntity self = (WirelessAccessPointBlockEntity) (Object) this;
         CompoundTag tag = new CompoundTag();
 
-        WirelessAccessPointBlockEntity wireless = new WirelessAccessPointBlockEntity(AEBlockEntities.WIRELESS_ACCESS_POINT, self.getBlockPos(), self.getBlockState());
+        WirelessAccessPointBlockEntity wireless = new WirelessAccessPointBlockEntity(AEBlockEntities.WIRELESS_ACCESS_POINT.get(), self.getBlockPos(), self.getBlockState());
         for(int i = 0; i < self.getInternalInventory().size(); ++i) {
             ItemStack item = self.getInternalInventory().getStackInSlot(i);
             if(!item.isEmpty()) {
@@ -43,7 +44,7 @@ public class WirelessAccessPointBlockEntityMixin implements SpecialBlockEntityIt
             }
         }
 
-        wireless.saveAdditional(tag);
+        wireless.saveAdditional(tag, provider);
         out.merge(tag);
     }
 }

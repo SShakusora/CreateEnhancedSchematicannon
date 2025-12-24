@@ -1,8 +1,6 @@
 {
   "pack": {
-    "description": {
-      "text": "${mod_id} resources"
-    },
+    "description": "CES Resources",
     "pack_format": 15
   }
 }

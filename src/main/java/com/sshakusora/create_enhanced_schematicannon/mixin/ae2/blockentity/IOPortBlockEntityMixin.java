@@ -5,6 +5,7 @@ import appeng.blockentity.storage.IOPortBlockEntity;
 import com.simibubi.create.api.schematic.nbt.PartialSafeNBT;
 import com.simibubi.create.api.schematic.requirement.SpecialBlockEntityItemRequirement;
 import com.simibubi.create.content.schematics.requirement.ItemRequirement;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
@@ -34,13 +35,13 @@ public class IOPortBlockEntityMixin implements SpecialBlockEntityItemRequirement
     }
 
     @Override
-    public void writeSafe(CompoundTag out) {
+    public void writeSafe(CompoundTag out, HolderLookup.Provider provider) {
         IOPortBlockEntity self = (IOPortBlockEntity) (Object) this;
         CompoundTag tag = new CompoundTag();
 
         self.getInternalInventory().clear();
 
-        self.saveAdditional(tag);
+        self.saveAdditional(tag, provider);
         out.merge(tag);
     }
 }

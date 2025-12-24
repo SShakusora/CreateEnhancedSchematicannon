@@ -6,6 +6,7 @@ import appeng.items.storage.BasicStorageCell;
 import com.simibubi.create.api.schematic.nbt.PartialSafeNBT;
 import com.simibubi.create.api.schematic.requirement.SpecialBlockEntityItemRequirement;
 import com.simibubi.create.content.schematics.requirement.ItemRequirement;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.ItemStack;
@@ -45,11 +46,11 @@ public class DriveBlockEntityMixin implements SpecialBlockEntityItemRequirement,
     }
 
     @Override
-    public void writeSafe(CompoundTag out) {
+    public void writeSafe(CompoundTag out, HolderLookup.Provider provider) {
         DriveBlockEntity self = (DriveBlockEntity) (Object) this;
         Set<String>  keysToRemove = Set.of("keys", "ic", "amts");
         CompoundTag tag = new CompoundTag();
-        self.saveAdditional(tag);
+        self.saveAdditional(tag, provider);
 
         if (tag.contains("inv", Tag.TAG_COMPOUND)) {
             CompoundTag inv = tag.getCompound("inv");
