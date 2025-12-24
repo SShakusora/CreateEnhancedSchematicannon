@@ -1,8 +1,8 @@
 package com.sshakusora.create_enhanced_schematicannon.mixin.moonlight.blockentity;
 
-import com.simibubi.create.content.schematics.requirement.ISpecialBlockEntityItemRequirement;
+import com.simibubi.create.api.schematic.nbt.PartialSafeNBT;
+import com.simibubi.create.api.schematic.requirement.SpecialBlockEntityItemRequirement;
 import com.simibubi.create.content.schematics.requirement.ItemRequirement;
-import com.simibubi.create.foundation.utility.IPartialSafeNBT;
 import net.mehvahdjukaar.moonlight.api.block.ItemDisplayTile;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Mixin(ItemDisplayTile.class)
-public class ItemDisplayTileMixin implements ISpecialBlockEntityItemRequirement, IPartialSafeNBT {
+public class ItemDisplayTileMixin implements SpecialBlockEntityItemRequirement, PartialSafeNBT {
     @Override
     public ItemRequirement getRequiredItems(BlockState state) {
         ItemDisplayTile self = (ItemDisplayTile) (Object) this;

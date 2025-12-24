@@ -134,19 +134,19 @@ dependencies {
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
-    implementation fg.deobf("curse.maven:create-328085:5838779")
+    implementation fg.deobf("curse.maven:create-328085:7178761")
 
     compileOnly fg.deobf("curse.maven:applied-energistics-2-223794:5565729")
     runtimeOnly fg.deobf("curse.maven:applied-energistics-2-223794:5565729")
 
-    compileOnly fg.deobf("curse.maven:supplementaries-412082:6228530")
-    runtimeOnly fg.deobf("curse.maven:supplementaries-412082:6228530")
+    compileOnly fg.deobf("curse.maven:supplementaries-412082:7113231")
+    runtimeOnly fg.deobf("curse.maven:supplementaries-412082:7113231")
 
     compileOnly fg.deobf("curse.maven:selene-499980:7191950")
     runtimeOnly fg.deobf("curse.maven:selene-499980:7191950")
 
-    compileOnly fg.deobf("curse.maven:amendments-896746:6259599")
-    runtimeOnly fg.deobf("curse.maven:amendments-896746:6259599")
+    compileOnly fg.deobf("curse.maven:amendments-896746:7240735")
+    runtimeOnly fg.deobf("curse.maven:amendments-896746:7240735")
 
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
