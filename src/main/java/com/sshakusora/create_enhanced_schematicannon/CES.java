@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 public class CES
 {
     public static final String MODID = "create_enhanced_schematicannon";
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public CES()
     {

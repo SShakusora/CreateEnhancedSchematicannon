@@ -1,4 +1,4 @@
-package com.sshakusora.create_enhanced_schematicannon.mixin.ae2;
+package com.sshakusora.create_enhanced_schematicannon.mixin.ae2.blockentity;
 
 import appeng.api.upgrades.IUpgradeInventory;
 import appeng.blockentity.storage.DriveBlockEntity;
@@ -14,10 +14,10 @@ import org.spongepowered.asm.mixin.Mixin;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Mixin(DriveBlockEntity.class)
 public class DriveBlockEntityMixin implements ISpecialBlockEntityItemRequirement, IPartialSafeNBT {
-    //TODO: rotate and mirror.
     @Override
     public ItemRequirement getRequiredItems(BlockState state) {
         DriveBlockEntity self = (DriveBlockEntity) (Object) this;
@@ -47,31 +47,26 @@ public class DriveBlockEntityMixin implements ISpecialBlockEntityItemRequirement
     @Override
     public void writeSafe(CompoundTag out) {
         DriveBlockEntity self = (DriveBlockEntity) (Object) this;
-        CompoundTag invTag = new CompoundTag();
+        Set<String>  keysToRemove = Set.of("keys", "ic", "amts");
+        CompoundTag tag = new CompoundTag();
+        self.saveAdditional(tag);
 
-        for (int slot = 0; slot < self.getCellCount(); slot++) {
-            ItemStack stack = self.getInternalInventory().getStackInSlot(slot);
-            if (stack.isEmpty())
-                continue;
+        if (tag.contains("inv", Tag.TAG_COMPOUND)) {
+            CompoundTag inv = tag.getCompound("inv");
 
-            CompoundTag itemTag = new CompoundTag();
-            stack.save(itemTag);
+            for (String itemKey : inv.getAllKeys()) {
+                CompoundTag item = inv.getCompound(itemKey);
 
-            if (itemTag.contains("tag", Tag.TAG_COMPOUND)) {
-                CompoundTag tag = itemTag.getCompound("tag");
+                if (item.contains("tag", Tag.TAG_COMPOUND)) {
+                    CompoundTag itemTag = item.getCompound("tag");
 
-                tag.remove("keys");
-                tag.remove("amts");
-                tag.remove("ic");
-
-                if (tag.isEmpty()) itemTag.remove("tag");
+                    for (String removeKey : keysToRemove) {
+                        itemTag.remove(removeKey);
+                    }
+                }
             }
-
-            invTag.put("item" + slot, itemTag);
         }
 
-        if (!invTag.isEmpty()) out.put("inv", invTag);
-
-        out.putInt("priority", self.getPriority());
+        out.merge(tag);
     }
 }
