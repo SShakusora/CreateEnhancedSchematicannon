@@ -2,6 +2,7 @@
   "required": true,
   "minVersion": "0.8",
   "package": "com.sshakusora.create_enhanced_schematicannon.mixin",
+  "plugin": "com.sshakusora.create_enhanced_schematicannon.mixin.OptionalMixinPlugin",
   "compatibilityLevel": "JAVA_17",
   "refmap": "mixins.create_enhanced_schematicannon.refmap.json",
   "server": [
@@ -27,13 +28,14 @@
     "ae2.block.SpatialIOPortBlockMixin",
     "ae2.block.VibrationChamberBlockMixin",
     "ae2.block.WirelessAccessPointBlockMixin",
+    "ae2.blockentity.CableBusBlockEntityLaunch",
     "ae2.blockentity.CableBusBlockEntityMixin",
-    "ae2.blockentity.MEChestBlockEntityMixin",
     "ae2.blockentity.CondenserBlockEntityMixin",
     "ae2.blockentity.DriveBlockEntityMixin",
     "ae2.blockentity.InscriberBlockEntityMixin",
     "ae2.blockentity.InterfaceBlockEntityMixin",
     "ae2.blockentity.IOPortBlockEntityMixin",
+    "ae2.blockentity.MEChestBlockEntityMixin",
     "ae2.blockentity.MolecularAssemblerBlockEntityMixin",
     "ae2.blockentity.PatternProviderBlockEntityMixin",
     "ae2.blockentity.VibrationChamberBlockEntityMixin",
@@ -45,6 +47,7 @@
     "supplementaries.block.FrameBlockMixin",
     "supplementaries.block.FrameBraceBlockMixin",
     "supplementaries.block.PedestalBlockMixin",
+    "supplementaries.blockentity.FrameBlockTileLaunch",
     "supplementaries.blockentity.FrameBlockTileMixin"
   ],
   "injectors": {
