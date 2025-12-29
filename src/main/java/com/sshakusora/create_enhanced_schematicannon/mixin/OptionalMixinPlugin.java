@@ -41,6 +41,18 @@ public class OptionalMixinPlugin implements IMixinConfigPlugin {
             return LOADED_MODS.contains("amendments");
         }
 
+        if (mixinClassName.contains(".chimes.")) {
+            return LOADED_MODS.contains("chimes");
+        }
+
+        if (mixinClassName.contains(".dramaticdoors.")) {
+            return LOADED_MODS.contains("dramaticdoors");
+        }
+
+        if (mixinClassName.contains(".chinjufumod.")) {
+            return LOADED_MODS.contains("chinjufumod");
+        }
+
         return true;
     }
 

@@ -43,10 +43,16 @@
     "ae2.blockentity.accessor.CableBusContainerAccessor",
     "ae2.blockentity.accessor.CableBusStorageAccessor",
     "amendments.blockentity.HangingSignTileExtensionMixin",
+    "chimes.block.BambooWindChimeBlockMixin",
+    "chimes.block.WindChimeBlockMixin",
+    "chimes.blockentity.WindBellBEMixin",
+    "chinjufumod.block.SudareMixin",
+    "dramaticdoors.block.TallDoorBlockMixin",
     "moonlight.blockentity.ItemDisplayTileMixin",
     "supplementaries.block.FrameBlockMixin",
     "supplementaries.block.FrameBraceBlockMixin",
     "supplementaries.block.PedestalBlockMixin",
+    "supplementaries.block.UrnBlockMixin",
     "supplementaries.blockentity.FrameBlockTileLaunch",
     "supplementaries.blockentity.FrameBlockTileMixin"
   ]
