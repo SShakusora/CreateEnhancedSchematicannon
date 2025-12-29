@@ -49,6 +49,7 @@
     "chinjufumod.block.SudareMixin",
     "dramaticdoors.block.TallDoorBlockMixin",
     "moonlight.blockentity.ItemDisplayTileMixin",
+    "quark.block.GrateBlockMixin",
     "supplementaries.block.FrameBlockMixin",
     "supplementaries.block.FrameBraceBlockMixin",
     "supplementaries.block.PedestalBlockMixin",

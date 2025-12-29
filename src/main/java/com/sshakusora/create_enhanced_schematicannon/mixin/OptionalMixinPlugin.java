@@ -53,6 +53,10 @@ public class OptionalMixinPlugin implements IMixinConfigPlugin {
             return LOADED_MODS.contains("chinjufumod");
         }
 
+        if (mixinClassName.contains(".quark.")) {
+            return LOADED_MODS.contains("quark");
+        }
+
         return true;
     }
 
