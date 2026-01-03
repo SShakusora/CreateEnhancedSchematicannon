@@ -10,7 +10,6 @@
   "client": [
   ],
   "mixins": [
-    "immersive_weathering.block.IcicleBlockLaunch",
     "ae2.block.CableBusBlockMixin",
     "ae2.block.ChargerBlockMixin",
     "ae2.block.ChestBlockMixin",
@@ -48,7 +47,10 @@
     "chimes.block.WindChimeBlockMixin",
     "chimes.blockentity.WindBellBEMixin",
     "chinjufumod.block.SudareMixin",
+    "create.block.BlazeBurnerBlockFix",
+    "create.block.BlazeBurnerBlockMixin",
     "dramaticdoors.block.TallDoorBlockMixin",
+    "immersive_weathering.block.IcicleBlockLaunch",
     "moonlight.blockentity.ItemDisplayTileMixin",
     "quark.block.GrateBlockMixin",
     "supplementaries.block.FrameBlockMixin",
