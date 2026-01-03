@@ -57,6 +57,10 @@ public class OptionalMixinPlugin implements IMixinConfigPlugin {
             return LOADED_MODS.contains("quark");
         }
 
+        if (mixinClassName.contains(".immersive_weathering.")) {
+            return LOADED_MODS.contains("immersive_weathering");
+        }
+
         return true;
     }
 

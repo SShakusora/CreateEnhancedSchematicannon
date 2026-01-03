@@ -10,6 +10,7 @@
   "client": [
   ],
   "mixins": [
+    "immersive_weathering.block.IcicleBlockLaunch",
     "ae2.block.CableBusBlockMixin",
     "ae2.block.ChargerBlockMixin",
     "ae2.block.ChestBlockMixin",
