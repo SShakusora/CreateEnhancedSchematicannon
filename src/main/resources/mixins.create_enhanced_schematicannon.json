@@ -47,7 +47,7 @@
     "chimes.block.WindChimeBlockMixin",
     "chimes.blockentity.WindBellBEMixin",
     "chinjufumod.block.SudareMixin",
-    "create.block.BlazeBurnerBlockFix",
+    "create.block.BoilerHeatersFix",
     "create.block.BlazeBurnerBlockMixin",
     "dramaticdoors.block.TallDoorBlockMixin",
     "immersive_weathering.block.IcicleBlockLaunch",

@@ -168,6 +168,8 @@ dependencies {
 
     compileOnly fg.deobf("curse.maven:immersive-weathering-forge-592449:6116941")
     runtimeOnly fg.deobf("curse.maven:immersive-weathering-forge-592449:6116941")
+
+    compileOnly fg.deobf("curse.maven:chinjufumod-256178:5529533")
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")
