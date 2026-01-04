@@ -47,8 +47,8 @@
     "chimes.block.WindChimeBlockMixin",
     "chimes.blockentity.WindBellBEMixin",
     "chinjufumod.block.SudareMixin",
-    "create.block.BoilerHeatersFix",
     "create.block.BlazeBurnerBlockMixin",
+    "create.block.BoilerHeatersFix",
     "dramaticdoors.block.TallDoorBlockMixin",
     "immersive_weathering.block.IcicleBlockLaunch",
     "moonlight.blockentity.ItemDisplayTileMixin",
@@ -58,6 +58,7 @@
     "supplementaries.block.PedestalBlockMixin",
     "supplementaries.block.UrnBlockMixin",
     "supplementaries.blockentity.FrameBlockTileLaunch",
-    "supplementaries.blockentity.FrameBlockTileMixin"
+    "supplementaries.blockentity.FrameBlockTileMixin",
+    "vanilla.ForgeChunkSaveMixin"
   ]
 }
