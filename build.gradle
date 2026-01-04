@@ -146,28 +146,28 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:applied-energistics-2-223794:5565729")
 
     compileOnly fg.deobf("curse.maven:supplementaries-412082:6228530")
-    runtimeOnly fg.deobf("curse.maven:supplementaries-412082:6228530")
+//    runtimeOnly fg.deobf("curse.maven:supplementaries-412082:6228530")
 
     compileOnly fg.deobf("curse.maven:selene-499980:7191950")
-    runtimeOnly fg.deobf("curse.maven:selene-499980:7191950")
+//    runtimeOnly fg.deobf("curse.maven:selene-499980:7191950")
 
     compileOnly fg.deobf("curse.maven:amendments-896746:6259599")
-    runtimeOnly fg.deobf("curse.maven:amendments-896746:6259599")
+//    runtimeOnly fg.deobf("curse.maven:amendments-896746:6259599")
 
     compileOnly fg.deobf("curse.maven:chimes-350464:4671986")
-    runtimeOnly fg.deobf("curse.maven:chimes-350464:4671986")
+//    runtimeOnly fg.deobf("curse.maven:chimes-350464:4671986")
 
     compileOnly fg.deobf("curse.maven:dramatic-doors-380617:5221139")
-    runtimeOnly fg.deobf("curse.maven:dramatic-doors-380617:5221139")
+//    runtimeOnly fg.deobf("curse.maven:dramatic-doors-380617:5221139")
 
     compileOnly fg.deobf("curse.maven:quark-243121:6427817")
-    runtimeOnly fg.deobf("curse.maven:quark-243121:6427817")
+//    runtimeOnly fg.deobf("curse.maven:quark-243121:6427817")
 
     compileOnly fg.deobf("curse.maven:zeta-968868:7335229")
-    runtimeOnly fg.deobf("curse.maven:zeta-968868:7335229")
+//    runtimeOnly fg.deobf("curse.maven:zeta-968868:7335229")
 
     compileOnly fg.deobf("curse.maven:immersive-weathering-forge-592449:6116941")
-    runtimeOnly fg.deobf("curse.maven:immersive-weathering-forge-592449:6116941")
+//    runtimeOnly fg.deobf("curse.maven:immersive-weathering-forge-592449:6116941")
 
     compileOnly fg.deobf("curse.maven:chinjufumod-256178:5529533")
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings

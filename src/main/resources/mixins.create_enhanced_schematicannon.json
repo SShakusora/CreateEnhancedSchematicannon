@@ -28,7 +28,6 @@
     "ae2.block.SpatialIOPortBlockMixin",
     "ae2.block.VibrationChamberBlockMixin",
     "ae2.block.WirelessAccessPointBlockMixin",
-    "ae2.blockentity.CableBusBlockEntityLaunch",
     "ae2.blockentity.CableBusBlockEntityMixin",
     "ae2.blockentity.ChestBlockEntityMixin",
     "ae2.blockentity.CondenserBlockEntityMixin",
@@ -57,7 +56,6 @@
     "supplementaries.block.FrameBraceBlockMixin",
     "supplementaries.block.PedestalBlockMixin",
     "supplementaries.block.UrnBlockMixin",
-    "supplementaries.blockentity.FrameBlockTileLaunch",
     "supplementaries.blockentity.FrameBlockTileMixin",
     "vanilla.ForgeChunkSaveMixin"
   ]

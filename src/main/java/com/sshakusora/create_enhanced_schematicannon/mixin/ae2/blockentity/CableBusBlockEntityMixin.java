@@ -1,18 +1,30 @@
 package com.sshakusora.create_enhanced_schematicannon.mixin.ae2.blockentity;
 
+import appeng.api.implementations.parts.ICablePart;
 import appeng.api.inventories.InternalInventory;
+import appeng.api.parts.IFacadeContainer;
 import appeng.api.parts.IFacadePart;
 import appeng.api.parts.IPart;
 import appeng.api.upgrades.IUpgradeInventory;
 import appeng.blockentity.networking.CableBusBlockEntity;
+import appeng.core.definitions.AEBlockEntities;
 import appeng.core.definitions.AEItems;
 import appeng.core.definitions.AEParts;
+import appeng.facade.FacadePart;
+import appeng.helpers.externalstorage.GenericStackInv;
+import appeng.parts.CableBusContainer;
+import appeng.parts.automation.AnnihilationPlanePart;
 import appeng.parts.automation.UpgradeablePart;
 import appeng.parts.crafting.PatternProviderPart;
 import appeng.parts.misc.InterfacePart;
+import com.simibubi.create.content.contraptions.ITransformableBlockEntity;
+import com.simibubi.create.content.contraptions.StructureTransform;
 import com.simibubi.create.content.schematics.requirement.ISpecialBlockEntityItemRequirement;
 import com.simibubi.create.content.schematics.requirement.ItemRequirement;
 import com.simibubi.create.foundation.utility.IPartialSafeNBT;
+import com.sshakusora.create_enhanced_schematicannon.mixin.ae2.blockentity.accessor.CableBusContainerAccessor;
+import com.sshakusora.create_enhanced_schematicannon.mixin.ae2.blockentity.accessor.CableBusStorageAccessor;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
@@ -23,7 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Mixin(CableBusBlockEntity.class)
-public class CableBusBlockEntityMixin implements ISpecialBlockEntityItemRequirement, IPartialSafeNBT {
+public class CableBusBlockEntityMixin implements ISpecialBlockEntityItemRequirement, IPartialSafeNBT, ITransformableBlockEntity {
     @Override
     public ItemRequirement getRequiredItems(BlockState state) {
         CableBusBlockEntity self = (CableBusBlockEntity) (Object) this;
@@ -86,5 +98,54 @@ public class CableBusBlockEntityMixin implements ISpecialBlockEntityItemRequirem
     }
 
     @Override
-    public void writeSafe(CompoundTag out) {}
+    public void writeSafe(CompoundTag out) {
+        CableBusBlockEntity self = (CableBusBlockEntity) (Object) this;
+        CompoundTag tag = new CompoundTag();
+
+        self.saveAdditional(tag);
+        out.merge(tag);
+    }
+
+    @Override
+    public void transform(StructureTransform transform) {
+        CableBusBlockEntity self = (CableBusBlockEntity) (Object) this;
+
+        CompoundTag tag = new CompoundTag();
+        CableBusBlockEntity newCable = new CableBusBlockEntity(AEBlockEntities.CABLE_BUS, BlockPos.ZERO, self.getBlockState());
+        CableBusContainer newCb = newCable.getCableBus();
+        CableBusContainerAccessor newCbAc = (CableBusContainerAccessor) newCb;
+        IFacadeContainer oldFacades = self.getFacadeContainer();
+        IFacadeContainer newFacades = newCable.getFacadeContainer();
+
+        for (Direction dir : Direction.values()) {
+            IPart part = self.getPart(dir);
+            Direction mapped = transform.mirrorFacing(transform.rotateFacing(dir));
+            if(part != null) {
+                if(part instanceof InterfacePart interfacePart) {
+                    GenericStackInv storage = interfacePart.getStorage();
+                    storage.clear();
+                } else if(part instanceof PatternProviderPart patternProviderPart) {
+                    GenericStackInv storage = patternProviderPart.getLogic().getReturnInv();
+                    storage.clear();
+                } else if(part instanceof AnnihilationPlanePart annihilationPlanePart) {
+                    annihilationPlanePart.readFromNBT(new CompoundTag());
+                }
+                ((CableBusStorageAccessor) newCbAc.getStorage()).invokeSetPart(mapped, part);
+            }
+
+            IFacadePart f = oldFacades.getFacade(dir);
+            if (f != null) {
+                newFacades.addFacade(new FacadePart(f.getItemStack(), mapped));
+            }
+        }
+
+        IPart part = self.getPart(null);
+        if(part != null) {
+            ((CableBusStorageAccessor) newCbAc.getStorage()).invokeSetCenter((ICablePart) part);
+        }
+        newCable.saveAdditional(tag);
+
+        self.loadTag(tag);
+        self.setChanged();
+    }
 }
