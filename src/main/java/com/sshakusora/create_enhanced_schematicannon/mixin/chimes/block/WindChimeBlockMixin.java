@@ -1,7 +1,7 @@
 package com.sshakusora.create_enhanced_schematicannon.mixin.chimes.block;
 
 import com.nick.chimes.block.WindChimeBlock;
-import com.sshakusora.create_enhanced_schematicannon.util.ae2.RotateMirror;
+import com.sshakusora.create_enhanced_schematicannon.util.RotateMirror;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
