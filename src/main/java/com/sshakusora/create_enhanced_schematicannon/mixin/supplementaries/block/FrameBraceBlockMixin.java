@@ -12,16 +12,14 @@ import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(FrameBraceBlock.class)
 public abstract class FrameBraceBlockMixin extends Block {
-    @Shadow @Final public static BooleanProperty FLIPPED;
-
     public FrameBraceBlockMixin(Properties p_49795_) {
         super(p_49795_);
     }
 
     @Override
     public BlockState rotate(BlockState state, Rotation rotation) {
-        if (rotation == Rotation.NONE || rotation == Rotation.CLOCKWISE_180) {
-            state = state.setValue(FLIPPED, !state.getValue(FLIPPED));
+        if (rotation == Rotation.CLOCKWISE_90 || rotation == Rotation.COUNTERCLOCKWISE_90) {
+            state = state.setValue(FrameBraceBlock.FLIPPED, !state.getValue(FrameBraceBlock.FLIPPED));
         }
         return state;
     }
@@ -29,7 +27,7 @@ public abstract class FrameBraceBlockMixin extends Block {
     @Override
     public BlockState mirror(BlockState state, Mirror mirror) {
         if (mirror == Mirror.FRONT_BACK || mirror == Mirror.LEFT_RIGHT) {
-            state = state.setValue(FLIPPED, !state.getValue(FLIPPED));
+            state = state.setValue(FrameBraceBlock.FLIPPED, !state.getValue(FrameBraceBlock.FLIPPED));
         }
         return state;
     }
