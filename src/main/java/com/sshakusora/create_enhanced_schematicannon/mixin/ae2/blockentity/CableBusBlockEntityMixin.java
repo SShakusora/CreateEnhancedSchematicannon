@@ -28,6 +28,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 
@@ -119,8 +121,29 @@ public class CableBusBlockEntityMixin implements ISpecialBlockEntityItemRequirem
 
         for (Direction dir : Direction.values()) {
             IPart part = self.getPart(dir);
-            Direction mapped = transform.mirrorFacing(transform.rotateFacing(dir));
+            Direction mapped = transform.rotateFacing(transform.mirrorFacing(dir));
             if(part != null) {
+                CompoundTag tag2 = new CompoundTag();
+                part.writeToNBT(tag2);
+                //Processing spin
+                if(tag2.contains("spin") && ( dir == Direction.UP || dir == Direction.DOWN )) {
+                    int spin = tag2.getByte("spin");
+                    int steps = transform.rotation == Rotation.NONE ? 0
+                            : transform.rotation == Rotation.CLOCKWISE_90 ? 1
+                            : transform.rotation == Rotation.CLOCKWISE_180 ? 2
+                            : 3;
+
+                    spin = (spin + steps) & 3;
+
+                    if(transform.mirror == Mirror.FRONT_BACK && (spin == 0 || spin == 2)) {
+                        spin = spin == 0 ? 2 : 0;
+                    } else if(transform.mirror == Mirror.LEFT_RIGHT && (spin == 1 || spin == 3)) {
+                        spin = spin == 1 ? 3 : 1;
+                    }
+                    tag2.putByte("spin", (byte) spin);
+                    part.readFromNBT(tag2);
+                }
+                //Processing special part
                 if(part instanceof InterfacePart interfacePart) {
                     GenericStackInv storage = interfacePart.getStorage();
                     storage.clear();
@@ -145,6 +168,7 @@ public class CableBusBlockEntityMixin implements ISpecialBlockEntityItemRequirem
         }
         newCable.saveAdditional(tag);
 
+        self.clearContent();
         self.loadTag(tag);
         self.setChanged();
     }
