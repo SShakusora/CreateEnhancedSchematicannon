@@ -8,8 +8,10 @@
   "server": [
   ],
   "client": [
+    "ae2.StructureTemplateMixin"
   ],
   "mixins": [
+    "ae2.SchematicExportMixin",
     "ae2.block.CableBusBlockMixin",
     "ae2.block.ChargerBlockMixin",
     "ae2.block.ChestBlockMixin",
@@ -19,6 +21,7 @@
     "ae2.block.DriveBlockMixin",
     "ae2.block.GrowthAcceleratorBlockMixin",
     "ae2.block.InscriberBlockMixin",
+    "ae2.block.InterfaceBlockMixin",
     "ae2.block.IOPortBlockMixin",
     "ae2.block.LightDetectorBlockMixin",
     "ae2.block.PatternProviderBlockMixin",
