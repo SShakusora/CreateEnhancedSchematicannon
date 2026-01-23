@@ -22,7 +22,7 @@ public class CESNetwork {
                 id++,
                 RequestBlockEntityDataPacket.class,
                 RequestBlockEntityDataPacket::encode,
-                RequestBlockEntityDataPacket::new,
+                RequestBlockEntityDataPacket::decode,
                 RequestBlockEntityDataPacket::handle
         );
 
@@ -30,7 +30,7 @@ public class CESNetwork {
                 id++,
                 SyncBlockEntityDataPacket.class,
                 SyncBlockEntityDataPacket::encode,
-                SyncBlockEntityDataPacket::new,
+                SyncBlockEntityDataPacket::decode,
                 SyncBlockEntityDataPacket::handle
         );
     }

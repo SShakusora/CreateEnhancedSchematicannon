@@ -140,8 +140,8 @@ public class CableBusBlockEntityMixin implements ISpecialBlockEntityItemRequirem
 
         //processing cable visual connection
         IPart part = self.getPart(null);
-        CompoundTag visualTag = new CompoundTag();
         if(part != null) {
+            CompoundTag visualTag = new CompoundTag();
             part.writeVisualStateToNBT(visualTag);
             if (visualTag.contains("connections")) {
                 ListTag connectionsTag = visualTag.getList("connections", Tag.TAG_STRING);

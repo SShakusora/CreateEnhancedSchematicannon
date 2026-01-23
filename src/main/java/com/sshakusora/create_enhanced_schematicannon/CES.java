@@ -9,7 +9,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
-@Mod(com.sshakusora.create_enhanced_schematicannon.CES.MODID)
+@Mod(CES.MODID)
 public class CES
 {
     public static final String MODID = "create_enhanced_schematicannon";

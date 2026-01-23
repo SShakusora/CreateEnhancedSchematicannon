@@ -1,36 +1,28 @@
 package com.sshakusora.create_enhanced_schematicannon.network.packet.client;
 
 import com.sshakusora.create_enhanced_schematicannon.network.CESNetwork;
-import com.sshakusora.create_enhanced_schematicannon.network.INeedSyncBlockEntity;
 import com.sshakusora.create_enhanced_schematicannon.network.packet.SyncBlockEntityDataPacket;
+import com.sshakusora.create_enhanced_schematicannon.sync.server.ServerSchematicHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.PacketDistributor;
 
 import java.util.function.Supplier;
 
-public class RequestBlockEntityDataPacket {
-    private final BlockPos pos;
-    private final BlockPos minPos;
-
-    public RequestBlockEntityDataPacket(BlockPos pos, BlockPos minPos) {
-        this.pos = pos;
-        this.minPos = minPos;
+public record RequestBlockEntityDataPacket(String fileName, boolean convertImmediately,BlockPos first, BlockPos second) {
+    public static void encode(RequestBlockEntityDataPacket msg, FriendlyByteBuf buf) {
+        buf.writeUtf(msg.fileName);
+        buf.writeBoolean(msg.convertImmediately);
+        buf.writeBlockPos(msg.first);
+        buf.writeBlockPos(msg.second);
     }
 
-    public RequestBlockEntityDataPacket(FriendlyByteBuf buf) {
-        this.pos = buf.readBlockPos();
-        this.minPos = buf.readBlockPos();
-    }
-
-    public void encode(FriendlyByteBuf buf) {
-        buf.writeBlockPos(pos);
-        buf.writeBlockPos(minPos);
+    public static RequestBlockEntityDataPacket decode(FriendlyByteBuf buffer) {
+        return new RequestBlockEntityDataPacket(buffer.readUtf(), buffer.readBoolean(), buffer.readBlockPos(), buffer.readBlockPos());
     }
 
     public static void handle(RequestBlockEntityDataPacket msg, Supplier<NetworkEvent.Context> ctx) {
@@ -38,23 +30,16 @@ public class RequestBlockEntityDataPacket {
             ServerPlayer player = ctx.get().getSender();
             if (player == null) return;
 
-            Level level = player.level();
-            if (!level.isLoaded(msg.pos)) return;
+            ServerLevel level = player.serverLevel();
+            if (!level.isLoaded(msg.first) || !level.isLoaded(msg.second)) return;
 
-            BlockEntity be = level.getBlockEntity(msg.pos);
-            if (be instanceof INeedSyncBlockEntity) {
-                CompoundTag tag = be.saveWithId();
+            CompoundTag data = ServerSchematicHandler.collectSchematicData(msg.fileName, msg.convertImmediately, level, msg.first, msg.second);
 
-                BlockPos min = msg.minPos != null ? msg.minPos : BlockPos.ZERO;
-                BlockPos relative = msg.pos.subtract(min);
-
-                CESNetwork.CHANNEL.send(
-                        PacketDistributor.PLAYER.with(() -> player),
-                        new SyncBlockEntityDataPacket(relative, tag)
-                );
-            }
+            CESNetwork.CHANNEL.send(
+                    PacketDistributor.PLAYER.with(() -> player),
+                    new SyncBlockEntityDataPacket(data)
+            );
         });
-
         ctx.get().setPacketHandled(true);
     }
 }

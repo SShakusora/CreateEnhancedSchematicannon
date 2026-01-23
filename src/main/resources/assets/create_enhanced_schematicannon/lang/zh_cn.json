@@ -1,0 +1,4 @@
+{
+  "create.action.sync": "方块实体同步",
+  "create.action.sync.description": "从服务器上获取蓝图信息，这可能会花费一些时间，请确保你的网络质量良好！"
+}
