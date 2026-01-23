@@ -11,6 +11,7 @@ import com.simibubi.create.foundation.utility.Components;
 import com.simibubi.create.foundation.utility.Lang;
 import com.sshakusora.create_enhanced_schematicannon.network.CESNetwork;
 import com.sshakusora.create_enhanced_schematicannon.network.packet.client.RequestBlockEntityDataPacket;
+import com.sshakusora.create_enhanced_schematicannon.sync.gui.SyncIcon;
 import com.sshakusora.create_enhanced_schematicannon.sync.gui.VerticalIndicator;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
@@ -71,7 +72,7 @@ public class AddSyncConfig extends Screen {
 
     @Inject(method = "init", at = @At("TAIL"), locals = LocalCapture.CAPTURE_FAILHARD)
     private void addSyncConfig(CallbackInfo ci, int x, int y) {
-        this.syncButton = new IconButton(x + 29, y + 53, AllIcons.I_REPLACE_EMPTY);
+        this.syncButton = new IconButton(x + 29, y + 53, SyncIcon.I_SYNC);
         this.syncButton.withCallback(() -> this.syncIndicator.state = this.enableSync() ? Indicator.State.OFF : Indicator.State.ON);
         this.syncButton.setToolTip(this.syncLabel);
         this.addRenderableWidget(this.syncButton);
