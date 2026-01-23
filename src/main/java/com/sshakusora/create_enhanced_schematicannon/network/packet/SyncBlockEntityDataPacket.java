@@ -4,10 +4,11 @@ import com.sshakusora.create_enhanced_schematicannon.sync.client.ClientSchematic
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
 
-public record SyncBlockEntityDataPacket(CompoundTag data) {
+public record SyncBlockEntityDataPacket(@Nullable CompoundTag data) {
     public static void encode(SyncBlockEntityDataPacket msg, FriendlyByteBuf buf) {
         buf.writeNbt(msg.data);
     }

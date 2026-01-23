@@ -1,5 +1,6 @@
 {
-  "create.action.sync": "Enable Block Entity Sync",
-  "create.action.sync.description": "Fetch schematic data from the server. This may take some time, so please ensure you have a stable network connection."
-
+  "create_enhanced_schematicannon.action.sync": "Enable Block Entity Sync",
+  "create_enhanced_schematicannon.action.sync.server_not_loaded": "The server does not have the CES mod installed. This feature is unavailable.",
+  "create_enhanced_schematicannon.action.sync.description": "Fetch schematic data from the server. This may take some time, so please ensure you have a stable network connection.",
+  "create_enhanced_schematicannon.action.sync.fail": "Failed to retrieve the schematic. Please check your network connection and make sure the schematic is not too large."
 }

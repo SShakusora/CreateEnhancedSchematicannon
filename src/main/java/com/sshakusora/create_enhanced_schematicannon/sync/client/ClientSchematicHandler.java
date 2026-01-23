@@ -15,7 +15,9 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtIo;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -24,7 +26,11 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 
 public class ClientSchematicHandler {
-    public static ClientSaveResult saveSchematic(CompoundTag data) {
+    public static ClientSaveResult saveSchematic(@Nullable CompoundTag data) {
+        if (data == null) {
+            return new ClientSaveResult(null, false);
+        }
+
         String fileName = data.getString("CES_File");
         boolean isConvertImmediately = data.getBoolean("ConvertImmediately");
         BlockPos origin = BlockPos.of(data.getLong("CES_Origin"));
@@ -70,7 +76,9 @@ public class ClientSchematicHandler {
         LocalPlayer player = Minecraft.getInstance().player;
         SchematicAndQuillHandler handler = CreateClient.SCHEMATIC_AND_QUILL_HANDLER;
         if (result == null) {
-            Lang.translate("schematicAndQuill.failed", new Object[0]).style(ChatFormatting.RED).sendStatus(player);
+            if (player != null) {
+                player.displayClientMessage(Component.translatable("create_enhanced_schematicannon.action.sync.fail").withStyle(ChatFormatting.RED), true);
+            }
         } else {
             Path file = result.file();
             Lang.translate("schematicAndQuill.saved", new Object[]{file.getFileName()}).sendStatus(player);

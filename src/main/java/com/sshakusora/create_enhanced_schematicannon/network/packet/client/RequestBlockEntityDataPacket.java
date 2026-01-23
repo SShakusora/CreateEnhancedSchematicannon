@@ -1,5 +1,6 @@
 package com.sshakusora.create_enhanced_schematicannon.network.packet.client;
 
+import com.sshakusora.create_enhanced_schematicannon.CES;
 import com.sshakusora.create_enhanced_schematicannon.network.CESNetwork;
 import com.sshakusora.create_enhanced_schematicannon.network.packet.SyncBlockEntityDataPacket;
 import com.sshakusora.create_enhanced_schematicannon.sync.server.ServerSchematicHandler;
@@ -33,12 +34,20 @@ public record RequestBlockEntityDataPacket(String fileName, boolean convertImmed
             ServerLevel level = player.serverLevel();
             if (!level.isLoaded(msg.first) || !level.isLoaded(msg.second)) return;
 
-            CompoundTag data = ServerSchematicHandler.collectSchematicData(msg.fileName, msg.convertImmediately, level, msg.first, msg.second);
+            CompoundTag data = ServerSchematicHandler.collectSchematicData(player, msg.fileName, msg.convertImmediately, level, msg.first, msg.second);
 
-            CESNetwork.CHANNEL.send(
-                    PacketDistributor.PLAYER.with(() -> player),
-                    new SyncBlockEntityDataPacket(data)
-            );
+            try {
+                CESNetwork.CHANNEL.send(
+                        PacketDistributor.PLAYER.with(() -> player),
+                        new SyncBlockEntityDataPacket(data)
+                );
+            } catch (Exception e) {
+                CESNetwork.CHANNEL.send(
+                        PacketDistributor.PLAYER.with(() -> player),
+                        new SyncBlockEntityDataPacket(null)
+                );
+                CES.LOGGER.error("[CES] Failed to send schematic data packet to player: {}", player.getGameProfile().getName());
+            }
         });
         ctx.get().setPacketHandled(true);
     }

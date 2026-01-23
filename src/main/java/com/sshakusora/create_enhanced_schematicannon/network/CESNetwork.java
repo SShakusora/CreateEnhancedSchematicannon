@@ -12,8 +12,8 @@ public class CESNetwork {
     public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
             CES.rl("main"),
             () -> PROTOCOL_VERSION,
-            PROTOCOL_VERSION::equals,
-            PROTOCOL_VERSION::equals
+            clientVersion -> true,
+            serverVersion -> true
     );
 
     public static void register() {

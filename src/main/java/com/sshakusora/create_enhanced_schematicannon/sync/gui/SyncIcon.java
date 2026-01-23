@@ -9,15 +9,15 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class SyncIcon implements ScreenElement {
-    public final ResourceLocation I_SYNC_ICON = CES.rl("textures/gui/sync_icon.png");
+    public final ResourceLocation SYNC_ICON = CES.rl("textures/gui/sync_icon.png");
     public static final SyncIcon I_SYNC = new SyncIcon();
 
     @OnlyIn(Dist.CLIENT)
     public void render(GuiGraphics graphics, int x, int y) {
-        RenderSystem.setShaderTexture(0, I_SYNC_ICON);
+        RenderSystem.setShaderTexture(0, SYNC_ICON);
 
         graphics.blit(
-                I_SYNC_ICON,
+                SYNC_ICON,
                 x, y,
                 0,
                 0, 0,
