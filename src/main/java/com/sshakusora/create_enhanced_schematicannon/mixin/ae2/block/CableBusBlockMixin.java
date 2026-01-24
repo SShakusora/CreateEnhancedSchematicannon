@@ -8,6 +8,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(CableBusBlock.class)
+public class CableBusBlockMixin implements ISpecialBlockItemRequirement{
 public class CableBusBlockMixin implements SpecialBlockItemRequirement {
     @Override
     public ItemRequirement getRequiredItems(BlockState var1, BlockEntity var2) {

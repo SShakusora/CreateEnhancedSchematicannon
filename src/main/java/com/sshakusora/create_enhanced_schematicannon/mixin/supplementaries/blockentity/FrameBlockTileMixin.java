@@ -1,5 +1,10 @@
 package com.sshakusora.create_enhanced_schematicannon.mixin.supplementaries.blockentity;
 
+import com.simibubi.create.content.contraptions.ITransformableBlockEntity;
+import com.simibubi.create.content.contraptions.StructureTransform;
+import com.simibubi.create.content.schematics.requirement.ISpecialBlockEntityItemRequirement;
+import com.simibubi.create.content.schematics.requirement.ItemRequirement;
+import com.simibubi.create.foundation.utility.IPartialSafeNBT;
 import com.simibubi.create.api.schematic.nbt.PartialSafeNBT;
 import com.simibubi.create.api.schematic.requirement.SpecialBlockEntityItemRequirement;
 import com.simibubi.create.content.schematics.requirement.ItemRequirement;
@@ -13,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Mixin(FrameBlockTile.class)
+public class FrameBlockTileMixin implements ISpecialBlockEntityItemRequirement, IPartialSafeNBT, ITransformableBlockEntity {
 public class FrameBlockTileMixin implements SpecialBlockEntityItemRequirement, PartialSafeNBT {
     @Override
     public ItemRequirement getRequiredItems(BlockState state) {
@@ -29,5 +35,21 @@ public class FrameBlockTileMixin implements SpecialBlockEntityItemRequirement, P
     }
 
     @Override
-    public void writeSafe(CompoundTag out) {}
+    public void writeSafe(CompoundTag out) {
+        FrameBlockTile self = (FrameBlockTile) (Object) this;
+        CompoundTag tag = new CompoundTag();
+
+        self.saveAdditional(tag);
+        out.merge(tag);
+    }
+
+    @Override
+    public void transform(StructureTransform transform) {
+        FrameBlockTile self = (FrameBlockTile) (Object) this;
+        BlockState held = self.getHeldBlock();
+        if(held == null) return;
+
+        self.setHeldBlock(transform.apply(held));
+        self.setChanged();
+    }
 }

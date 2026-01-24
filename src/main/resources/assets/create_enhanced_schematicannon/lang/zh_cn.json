@@ -1,0 +1,6 @@
+{
+  "create_enhanced_schematicannon.action.sync": "方块实体同步",
+  "create_enhanced_schematicannon.action.sync.server_not_loaded": "服务端未安装CES模组，该功能无法使用！",
+  "create_enhanced_schematicannon.action.sync.description": "从服务器上获取蓝图信息，这可能会花费一些时间，请确保你的网络质量足够良好！",
+  "create_enhanced_schematicannon.action.sync.fail": "蓝图获取失败，请检查你的网络情况以及蓝图大小！"
+}
