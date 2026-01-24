@@ -11,6 +11,11 @@ import java.util.Set;
 
 public class OptionalMixinPlugin implements IMixinConfigPlugin {
     private static final Set<String> LOADED_MODS = new HashSet<>();
+    private final boolean IS_DEV = this.isDevEnvironment();
+
+    private boolean isDevEnvironment() {
+        return !net.neoforged.fml.loading.FMLLoader.isProduction();
+    }
 
     @Override
     public void onLoad(String mixinPackage) {
@@ -26,6 +31,10 @@ public class OptionalMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
+        if (mixinClassName.startsWith("com.sshakusora.create_enhanced_schematicannon.mixin.create.debug")) {
+            return IS_DEV;
+        }
+
         if (mixinClassName.contains(".ae2.")) {
             return LOADED_MODS.contains("ae2");
         }
@@ -40,6 +49,18 @@ public class OptionalMixinPlugin implements IMixinConfigPlugin {
 
         if (mixinClassName.contains(".amendments.")) {
             return LOADED_MODS.contains("amendments");
+        }
+
+        if (mixinClassName.contains(".chimes.")) {
+            return LOADED_MODS.contains("chimes");
+        }
+
+        if (mixinClassName.contains(".dramaticdoors.")) {
+            return LOADED_MODS.contains("dramaticdoors");
+        }
+
+        if (mixinClassName.contains(".integrateddynamics.")) {
+            return LOADED_MODS.contains("integrateddynamics");
         }
 
         return true;

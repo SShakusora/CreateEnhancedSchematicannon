@@ -1,4 +1,4 @@
-package com.sshakusora.create_enhanced_schematicannon.util.ae2;
+package com.sshakusora.create_enhanced_schematicannon.util;
 
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Mirror;

@@ -21,6 +21,12 @@ repositories {
     maven {
         url "https://cursemaven.com"
     }
+    maven {
+        url = "https://maven.ithundxr.dev/snapshots"
+    } // Registrate
+    maven {
+        url = "https://maven.createmod.net"
+    }
     // Add here additional repositories if required by some of the dependencies below.
 }
 
@@ -125,15 +131,33 @@ dependencies {
     annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
 
     implementation "curse.maven:create-328085:7178775"
+    implementation "net.createmod.ponder:ponder-neoforge:1.0.81+mc1.21.1"
+    compileOnly "com.tterrag.registrate:Registrate:MC1.21-1.3.0+67"
 
-    implementation "curse.maven:applied-energistics-2-223794:7027323"
-    implementation "curse.maven:guideme-1173950:7127444"
+    compileOnly "curse.maven:applied-energistics-2-223794:7027323"
+    runtimeOnly "curse.maven:applied-energistics-2-223794:7027323"
+    compileOnly "curse.maven:guideme-1173950:7127444"
+    runtimeOnly "curse.maven:guideme-1173950:7127444"
 
-    implementation "curse.maven:supplementaries-412082:7340880"
+    compileOnly "curse.maven:supplementaries-412082:7340880"
+    runtimeOnly "curse.maven:supplementaries-412082:7340880"
+    compileOnly "curse.maven:amendments-896746:7351706"
+    runtimeOnly "curse.maven:amendments-896746:7351706"
+    compileOnly "curse.maven:selene-499980:7340883"
+    runtimeOnly "curse.maven:selene-499980:7340883"
 
-    implementation "curse.maven:amendments-896746:7351706"
+    compileOnly "curse.maven:chimes-350464:6280322"
+    runtimeOnly "curse.maven:chimes-350464:6280322"
 
-    implementation "curse.maven:selene-499980:7340883"
+    compileOnly "curse.maven:dramatic-doors-380617:6479044"
+    runtimeOnly "curse.maven:dramatic-doors-380617:6479044"
+
+    compileOnly "curse.maven:integrated-dynamics-236307:7498811"
+    runtimeOnly "curse.maven:integrated-dynamics-236307:7498811"
+    compileOnly "curse.maven:common-capabilities-247007:7361876"
+    runtimeOnly "curse.maven:common-capabilities-247007:7361876"
+    compileOnly "curse.maven:cyclops-core-232758:6864888"
+    runtimeOnly "curse.maven:cyclops-core-232758:6864888"
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar
     // The group id is ignored when searching -- in this case, it is "blank"
