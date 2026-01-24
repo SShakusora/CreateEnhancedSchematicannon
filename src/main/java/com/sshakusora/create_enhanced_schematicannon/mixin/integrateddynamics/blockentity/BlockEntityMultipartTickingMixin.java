@@ -1,16 +1,17 @@
 package com.sshakusora.create_enhanced_schematicannon.mixin.integrateddynamics.blockentity;
 
-import com.simibubi.create.content.contraptions.ITransformableBlockEntity;
+import com.simibubi.create.api.contraption.transformable.TransformableBlockEntity;
+import com.simibubi.create.api.schematic.nbt.PartialSafeNBT;
+import com.simibubi.create.api.schematic.requirement.SpecialBlockEntityItemRequirement;
 import com.simibubi.create.content.contraptions.StructureTransform;
-import com.simibubi.create.content.schematics.requirement.ISpecialBlockEntityItemRequirement;
 import com.simibubi.create.content.schematics.requirement.ItemRequirement;
-import com.simibubi.create.foundation.utility.IPartialSafeNBT;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.cyclops.integrateddynamics.api.part.IPartState;
 import org.cyclops.integrateddynamics.api.part.IPartType;
@@ -24,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Mixin(BlockEntityMultipartTicking.class)
-public abstract class BlockEntityMultipartTickingMixin implements ISpecialBlockEntityItemRequirement, IPartialSafeNBT, ITransformableBlockEntity {
+public abstract class BlockEntityMultipartTickingMixin implements SpecialBlockEntityItemRequirement, PartialSafeNBT, TransformableBlockEntity {
     @Unique BlockEntityMultipartTicking self = (BlockEntityMultipartTicking) (Object) this;
 
     @Unique
@@ -84,7 +85,7 @@ public abstract class BlockEntityMultipartTickingMixin implements ISpecialBlockE
     }
 
     @Override
-    public void transform(StructureTransform transform) {
+    public void transform(BlockEntity be, StructureTransform transform) {
         BlockEntityMultipartTicking newCable = new BlockEntityMultipartTicking(BlockPos.ZERO, self.getBlockState());
         PartContainerTileMultipartTicking newPartContainer = newCable.getPartContainer();
         PartContainerTileMultipartTicking partContainer = self.getPartContainer();

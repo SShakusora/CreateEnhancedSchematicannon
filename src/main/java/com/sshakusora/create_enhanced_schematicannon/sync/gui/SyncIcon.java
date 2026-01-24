@@ -1,8 +1,8 @@
 package com.sshakusora.create_enhanced_schematicannon.sync.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.simibubi.create.foundation.gui.element.ScreenElement;
 import com.sshakusora.create_enhanced_schematicannon.CES;
+import net.createmod.catnip.gui.element.ScreenElement;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;

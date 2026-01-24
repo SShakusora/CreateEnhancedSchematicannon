@@ -1,9 +1,9 @@
 package com.sshakusora.create_enhanced_schematicannon.mixin.chimes.blockentity;
 
 import com.nick.chimes.block.entity.WindBellBE;
-import com.simibubi.create.content.schematics.requirement.ISpecialBlockEntityItemRequirement;
+import com.simibubi.create.api.schematic.nbt.PartialSafeNBT;
+import com.simibubi.create.api.schematic.requirement.SpecialBlockEntityItemRequirement;
 import com.simibubi.create.content.schematics.requirement.ItemRequirement;
-import com.simibubi.create.foundation.utility.IPartialSafeNBT;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.nbt.Tag;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Mixin(WindBellBE.class)
-public class WindBellBEMixin implements ISpecialBlockEntityItemRequirement, IPartialSafeNBT {
+public class WindBellBEMixin implements SpecialBlockEntityItemRequirement, PartialSafeNBT {
     @Shadow @Nullable private Tag itemBaseColor;
     @Shadow @Nullable private Tag itemTagColor;
 

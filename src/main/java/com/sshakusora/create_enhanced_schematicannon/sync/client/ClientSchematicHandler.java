@@ -6,8 +6,9 @@ import com.simibubi.create.content.schematics.SchematicExport;
 import com.simibubi.create.content.schematics.client.ClientSchematicLoader;
 import com.simibubi.create.content.schematics.client.SchematicAndQuillHandler;
 import com.simibubi.create.content.schematics.packet.InstantSchematicPacket;
+import com.simibubi.create.foundation.utility.CreateLang;
+import com.simibubi.create.foundation.utility.CreatePaths;
 import com.simibubi.create.foundation.utility.FilesHelper;
-import com.simibubi.create.foundation.utility.Lang;
 import com.sshakusora.create_enhanced_schematicannon.CES;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
@@ -45,26 +46,26 @@ public class ClientSchematicHandler {
         if (level == null) return new ClientSaveResult(null, isConvertImmediately);
 
         if (fileName.isEmpty()) {
-            fileName = Lang.translateDirect("schematicAndQuill.fallbackName", new Object[0]).getString();
+            fileName = CreateLang.translateDirect("schematicAndQuill.fallbackName", new Object[0]).getString();
         }
 
-        fileName = FilesHelper.findFirstValidFilename(fileName, SchematicExport.SCHEMATICS, "nbt");
+        fileName = FilesHelper.findFirstValidFilename(fileName, CreatePaths.SCHEMATICS_DIR, "nbt");
 
         if (!fileName.endsWith(".nbt")) {
             fileName = fileName + ".nbt";
         }
 
-        Path file = SchematicExport.SCHEMATICS.resolve(fileName).toAbsolutePath();
+        Path file = CreatePaths.SCHEMATICS_DIR.resolve(fileName).toAbsolutePath();
 
         try {
-            Files.createDirectories(SchematicExport.SCHEMATICS);
+            Files.createDirectories(CreatePaths.SCHEMATICS_DIR);
             boolean overwritten = Files.deleteIfExists(file);
 
             try (OutputStream out = Files.newOutputStream(file, StandardOpenOption.CREATE)) {
                 NbtIo.writeCompressed(data, out);
             }
 
-            SchematicExport.SchematicExportResult result =  new SchematicExport.SchematicExportResult(file, SchematicExport.SCHEMATICS, fileName, overwritten, origin, bounds);
+            SchematicExport.SchematicExportResult result =  new SchematicExport.SchematicExportResult(file, CreatePaths.SCHEMATICS_DIR, fileName, overwritten, origin, bounds);
             return new ClientSaveResult(result, isConvertImmediately);
         } catch (IOException e) {
             CES.LOGGER.error("An error occurred while saving schematic [" + fileName + "]", e);
@@ -81,7 +82,7 @@ public class ClientSchematicHandler {
             }
         } else {
             Path file = result.file();
-            Lang.translate("schematicAndQuill.saved", new Object[]{file.getFileName()}).sendStatus(player);
+            CreateLang.translate("schematicAndQuill.saved", new Object[]{file.getFileName()}).sendStatus(player);
             handler.firstPos = null;
             handler.secondPos = null;
             if (convertImmediately) {

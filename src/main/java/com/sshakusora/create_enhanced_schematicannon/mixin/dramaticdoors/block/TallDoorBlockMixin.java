@@ -2,7 +2,7 @@ package com.sshakusora.create_enhanced_schematicannon.mixin.dramaticdoors.block;
 
 import com.fizzware.dramaticdoors.forge.blocks.TallDoorBlock;
 import com.fizzware.dramaticdoors.forge.state.properties.TripleBlockPart;
-import com.simibubi.create.content.schematics.requirement.ISpecialBlockItemRequirement;
+import com.simibubi.create.api.schematic.requirement.SpecialBlockItemRequirement;
 import com.simibubi.create.content.schematics.requirement.ItemRequirement;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Mixin(TallDoorBlock.class)
-public class TallDoorBlockMixin extends Block implements ISpecialBlockItemRequirement {
+public class TallDoorBlockMixin extends Block implements SpecialBlockItemRequirement {
     public TallDoorBlockMixin(Properties p_49795_) {
         super(p_49795_);
     }

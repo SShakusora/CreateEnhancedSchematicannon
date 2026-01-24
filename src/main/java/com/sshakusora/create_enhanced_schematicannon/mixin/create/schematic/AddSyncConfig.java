@@ -6,12 +6,12 @@ import com.simibubi.create.content.schematics.client.SchematicPromptScreen;
 import com.simibubi.create.foundation.gui.widget.IconButton;
 import com.simibubi.create.foundation.gui.widget.Indicator;
 import com.simibubi.create.foundation.item.TooltipHelper;
-import com.simibubi.create.foundation.utility.Components;
-import com.simibubi.create.foundation.utility.Lang;
+import com.simibubi.create.foundation.utility.CreateLang;
 import com.sshakusora.create_enhanced_schematicannon.network.CESNetwork;
 import com.sshakusora.create_enhanced_schematicannon.network.packet.client.RequestBlockEntityDataPacket;
 import com.sshakusora.create_enhanced_schematicannon.sync.gui.SyncIcon;
 import com.sshakusora.create_enhanced_schematicannon.sync.gui.VerticalIndicator;
+import net.createmod.catnip.lang.FontHelper;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -19,6 +19,7 @@ import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.network.Connection;
+import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -38,8 +39,8 @@ public class AddSyncConfig extends Screen {
     @Unique private final Component serverNotLoadedLabel = Component.translatable("create_enhanced_schematicannon.action.sync.server_not_loaded").withStyle(ChatFormatting.RED);
     @Unique private IconButton syncButton;
     @Unique private VerticalIndicator syncIndicator;
-    @Unique private final Component optionEnabled = Lang.translateDirect("gui.schematicannon.optionEnabled", new Object[0]);
-    @Unique private final Component optionDisabled = Lang.translateDirect("gui.schematicannon.optionDisabled", new Object[0]);
+    @Unique private final Component optionEnabled = CreateLang.translateDirect("gui.schematicannon.optionEnabled", new Object[0]);
+    @Unique private final Component optionDisabled = CreateLang.translateDirect("gui.schematicannon.optionDisabled", new Object[0]);
 
     @Unique
     protected boolean enableSync() {
@@ -60,7 +61,7 @@ public class AddSyncConfig extends Screen {
         if (button.isHovered()) {
             List<Component> tip = button.getToolTip();
             tip.add((this.enableSync() ? this.optionEnabled : this.optionDisabled).plainCopy().withStyle(ChatFormatting.BLUE));
-            tip.addAll(TooltipHelper.cutTextComponent(Component.translatable(tooltipKey + ".description"), TooltipHelper.Palette.ALL_GRAY));
+            tip.addAll(TooltipHelper.cutTextComponent(Component.translatable(tooltipKey + ".description"), FontHelper.Palette.ALL_GRAY));
         }
     }
 
@@ -77,7 +78,7 @@ public class AddSyncConfig extends Screen {
         if (!this.serverLoaded()) {
             this.syncButton.getToolTip().add(this.serverNotLoadedLabel);
         }
-        this.syncButton.getToolTip().add(TooltipHelper.holdShift(TooltipHelper.Palette.BLUE, hasShiftDown()));
+        this.syncButton.getToolTip().add(TooltipHelper.holdShift(FontHelper.Palette.BLUE, hasShiftDown()));
 
         if (hasShiftDown()) {
             this.fillToolTip(this.syncButton, "create_enhanced_schematicannon.action.sync");
@@ -87,7 +88,7 @@ public class AddSyncConfig extends Screen {
     @Inject(method = "init", at = @At("TAIL"), locals = LocalCapture.CAPTURE_FAILHARD)
     private void addSyncConfig(CallbackInfo ci, int x, int y) {
         this.syncButton = new IconButton(x + 29, y + 53, SyncIcon.I_SYNC);
-        this.syncIndicator = new VerticalIndicator(x + 47, y + 53, Components.immutableEmpty());
+        this.syncIndicator = new VerticalIndicator(x + 47, y + 53, CommonComponents.EMPTY);
 
         if (this.serverLoaded()) {
             this.syncButton.withCallback(() -> this.syncIndicator.state = this.enableSync() ? Indicator.State.OFF : Indicator.State.ON);

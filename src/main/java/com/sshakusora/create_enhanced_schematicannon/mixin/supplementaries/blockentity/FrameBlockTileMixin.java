@@ -1,16 +1,14 @@
 package com.sshakusora.create_enhanced_schematicannon.mixin.supplementaries.blockentity;
 
-import com.simibubi.create.content.contraptions.ITransformableBlockEntity;
-import com.simibubi.create.content.contraptions.StructureTransform;
-import com.simibubi.create.content.schematics.requirement.ISpecialBlockEntityItemRequirement;
-import com.simibubi.create.content.schematics.requirement.ItemRequirement;
-import com.simibubi.create.foundation.utility.IPartialSafeNBT;
+import com.simibubi.create.api.contraption.transformable.TransformableBlockEntity;
 import com.simibubi.create.api.schematic.nbt.PartialSafeNBT;
 import com.simibubi.create.api.schematic.requirement.SpecialBlockEntityItemRequirement;
+import com.simibubi.create.content.contraptions.StructureTransform;
 import com.simibubi.create.content.schematics.requirement.ItemRequirement;
 import net.mehvahdjukaar.supplementaries.common.block.tiles.FrameBlockTile;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 
@@ -18,8 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Mixin(FrameBlockTile.class)
-public class FrameBlockTileMixin implements ISpecialBlockEntityItemRequirement, IPartialSafeNBT, ITransformableBlockEntity {
-public class FrameBlockTileMixin implements SpecialBlockEntityItemRequirement, PartialSafeNBT {
+public class FrameBlockTileMixin implements SpecialBlockEntityItemRequirement, PartialSafeNBT, TransformableBlockEntity {
     @Override
     public ItemRequirement getRequiredItems(BlockState state) {
         FrameBlockTile self = (FrameBlockTile) (Object) this;
@@ -44,7 +41,7 @@ public class FrameBlockTileMixin implements SpecialBlockEntityItemRequirement, P
     }
 
     @Override
-    public void transform(StructureTransform transform) {
+    public void transform(BlockEntity be, StructureTransform transform) {
         FrameBlockTile self = (FrameBlockTile) (Object) this;
         BlockState held = self.getHeldBlock();
         if(held == null) return;
