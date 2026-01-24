@@ -4,7 +4,7 @@ import appeng.block.misc.LightDetectorBlock;
 import appeng.core.definitions.AEBlocks;
 import com.simibubi.create.api.schematic.requirement.SpecialBlockItemRequirement;
 import com.simibubi.create.content.schematics.requirement.ItemRequirement;
-import com.sshakusora.create_enhanced_schematicannon.util.ae2.RotateMirror;
+import com.sshakusora.create_enhanced_schematicannon.util.RotateMirror;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;

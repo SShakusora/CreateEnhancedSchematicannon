@@ -122,6 +122,13 @@ repositories {
     maven {
         url "https://cursemaven.com"
     }
+    maven { // Registrate
+        url "https://maven.tterrag.com/"
+    }
+    maven {
+        url = "https://maven.createmod.net"
+    }
+    mavenLocal()
 }
 
 dependencies {
@@ -135,19 +142,47 @@ dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
     implementation fg.deobf("curse.maven:create-328085:7178761")
+    implementation fg.deobf("net.createmod.ponder:Ponder-Forge-1.20.1:1.0.80")
+
+    compileOnly fg.deobf("com.tterrag.registrate:Registrate:MC1.20-1.3.3")
 
     compileOnly fg.deobf("curse.maven:applied-energistics-2-223794:5565729")
     runtimeOnly fg.deobf("curse.maven:applied-energistics-2-223794:5565729")
 
-    compileOnly fg.deobf("curse.maven:supplementaries-412082:7113231")
-    runtimeOnly fg.deobf("curse.maven:supplementaries-412082:7113231")
+    compileOnly fg.deobf("curse.maven:supplementaries-412082:6228530")
+//    runtimeOnly fg.deobf("curse.maven:supplementaries-412082:6228530")
 
     compileOnly fg.deobf("curse.maven:selene-499980:7191950")
-    runtimeOnly fg.deobf("curse.maven:selene-499980:7191950")
+//    runtimeOnly fg.deobf("curse.maven:selene-499980:7191950")
 
     compileOnly fg.deobf("curse.maven:amendments-896746:7240735")
-    runtimeOnly fg.deobf("curse.maven:amendments-896746:7240735")
+//    runtimeOnly fg.deobf("curse.maven:amendments-896746:7240735")
 
+    compileOnly fg.deobf("curse.maven:chimes-350464:4671986")
+//    runtimeOnly fg.deobf("curse.maven:chimes-350464:4671986")
+
+    compileOnly fg.deobf("curse.maven:dramatic-doors-380617:5221139")
+//    runtimeOnly fg.deobf("curse.maven:dramatic-doors-380617:5221139")
+
+    compileOnly fg.deobf("curse.maven:quark-243121:6427817")
+//    runtimeOnly fg.deobf("curse.maven:quark-243121:6427817")
+
+    compileOnly fg.deobf("curse.maven:zeta-968868:7335229")
+//    runtimeOnly fg.deobf("curse.maven:zeta-968868:7335229")
+
+    compileOnly fg.deobf("curse.maven:immersive-weathering-forge-592449:6116941")
+//    runtimeOnly fg.deobf("curse.maven:immersive-weathering-forge-592449:6116941")
+
+    compileOnly fg.deobf("curse.maven:chinjufumod-256178:5529533")
+
+    compileOnly fg.deobf("curse.maven:integrated-dynamics-236307:7473316")
+    runtimeOnly fg.deobf("curse.maven:integrated-dynamics-236307:7473316")
+
+    compileOnly fg.deobf("curse.maven:common-capabilities-247007:7229322")
+    runtimeOnly fg.deobf("curse.maven:common-capabilities-247007:7229322")
+
+    compileOnly fg.deobf("curse.maven:cyclops-core-232758:7210370")
+    runtimeOnly fg.deobf("curse.maven:cyclops-core-232758:7210370")
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")
