@@ -3,9 +3,9 @@ package com.sshakusora.create_enhanced_schematicannon.mixin.ae2.blockentity;
 import appeng.api.upgrades.IUpgradeInventory;
 import appeng.blockentity.storage.DriveBlockEntity;
 import appeng.items.storage.BasicStorageCell;
-import com.simibubi.create.content.schematics.requirement.ISpecialBlockEntityItemRequirement;
+import com.simibubi.create.api.schematic.nbt.PartialSafeNBT;
+import com.simibubi.create.api.schematic.requirement.SpecialBlockEntityItemRequirement;
 import com.simibubi.create.content.schematics.requirement.ItemRequirement;
-import com.simibubi.create.foundation.utility.IPartialSafeNBT;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.ItemStack;
@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Set;
 
 @Mixin(DriveBlockEntity.class)
-public class DriveBlockEntityMixin implements ISpecialBlockEntityItemRequirement, IPartialSafeNBT {
+public class DriveBlockEntityMixin implements SpecialBlockEntityItemRequirement, PartialSafeNBT {
     @Override
     public ItemRequirement getRequiredItems(BlockState state) {
         DriveBlockEntity self = (DriveBlockEntity) (Object) this;

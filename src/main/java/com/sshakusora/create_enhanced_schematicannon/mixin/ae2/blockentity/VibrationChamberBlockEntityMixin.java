@@ -3,9 +3,9 @@ package com.sshakusora.create_enhanced_schematicannon.mixin.ae2.blockentity;
 import appeng.api.upgrades.IUpgradeInventory;
 import appeng.blockentity.misc.VibrationChamberBlockEntity;
 import appeng.core.definitions.AEBlockEntities;
-import com.simibubi.create.content.schematics.requirement.ISpecialBlockEntityItemRequirement;
+import com.simibubi.create.api.schematic.nbt.PartialSafeNBT;
+import com.simibubi.create.api.schematic.requirement.SpecialBlockEntityItemRequirement;
 import com.simibubi.create.content.schematics.requirement.ItemRequirement;
-import com.simibubi.create.foundation.utility.IPartialSafeNBT;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Mixin(VibrationChamberBlockEntity.class)
-public class VibrationChamberBlockEntityMixin implements ISpecialBlockEntityItemRequirement, IPartialSafeNBT {
+public class VibrationChamberBlockEntityMixin implements SpecialBlockEntityItemRequirement, PartialSafeNBT {
     @Shadow private void setRemainingFuelTicks(double remainingFuelTicks){}
     @Override
     public ItemRequirement getRequiredItems(BlockState state) {

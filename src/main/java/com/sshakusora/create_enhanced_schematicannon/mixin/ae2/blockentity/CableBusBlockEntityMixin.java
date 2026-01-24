@@ -1,19 +1,12 @@
 package com.sshakusora.create_enhanced_schematicannon.mixin.ae2.blockentity;
 
-import appeng.api.implementations.parts.ICablePart;
 import appeng.api.inventories.InternalInventory;
-import appeng.api.parts.IFacadeContainer;
 import appeng.api.parts.IFacadePart;
 import appeng.api.parts.IPart;
 import appeng.api.upgrades.IUpgradeInventory;
 import appeng.blockentity.networking.CableBusBlockEntity;
-import appeng.core.definitions.AEBlockEntities;
 import appeng.core.definitions.AEItems;
 import appeng.core.definitions.AEParts;
-import appeng.facade.FacadePart;
-import appeng.helpers.externalstorage.GenericStackInv;
-import appeng.parts.CableBusContainer;
-import appeng.parts.automation.AnnihilationPlanePart;
 import appeng.parts.automation.UpgradeablePart;
 import appeng.parts.crafting.PatternProviderPart;
 import appeng.parts.misc.InterfacePart;
@@ -25,14 +18,15 @@ import com.simibubi.create.foundation.utility.IPartialSafeNBT;
 import com.sshakusora.create_enhanced_schematicannon.mixin.ae2.blockentity.accessor.CableBusContainerAccessor;
 import com.sshakusora.create_enhanced_schematicannon.mixin.ae2.blockentity.accessor.CableBusStorageAccessor;
 import net.minecraft.core.BlockPos;
+import com.simibubi.create.api.schematic.nbt.PartialSafeNBT;
+import com.simibubi.create.api.schematic.requirement.SpecialBlockEntityItemRequirement;
+import com.simibubi.create.content.schematics.requirement.ItemRequirement;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Mirror;
-import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 
@@ -41,6 +35,7 @@ import java.util.List;
 
 @Mixin(CableBusBlockEntity.class)
 public class CableBusBlockEntityMixin implements ISpecialBlockEntityItemRequirement, IPartialSafeNBT, ITransformableBlockEntity {
+public class CableBusBlockEntityMixin implements SpecialBlockEntityItemRequirement, PartialSafeNBT {
     @Override
     public ItemRequirement getRequiredItems(BlockState state) {
         CableBusBlockEntity self = (CableBusBlockEntity) (Object) this;

@@ -1,8 +1,8 @@
 package com.sshakusora.create_enhanced_schematicannon.mixin.amendments.blockentity;
 
-import com.simibubi.create.content.schematics.requirement.ISpecialBlockEntityItemRequirement;
+import com.simibubi.create.api.schematic.nbt.PartialSafeNBT;
+import com.simibubi.create.api.schematic.requirement.SpecialBlockEntityItemRequirement;
 import com.simibubi.create.content.schematics.requirement.ItemRequirement;
-import com.simibubi.create.foundation.utility.IPartialSafeNBT;
 import net.mehvahdjukaar.amendments.common.tile.HangingSignTileExtension;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Mixin(HangingSignTileExtension.class)
-public class HangingSignTileExtensionMixin implements ISpecialBlockEntityItemRequirement, IPartialSafeNBT {
+public class HangingSignTileExtensionMixin implements SpecialBlockEntityItemRequirement, PartialSafeNBT {
     @Override
     public ItemRequirement getRequiredItems(BlockState state) {
         HangingSignTileExtension self = (HangingSignTileExtension) (Object) this;

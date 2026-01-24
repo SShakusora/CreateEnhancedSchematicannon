@@ -1,9 +1,9 @@
 package com.sshakusora.create_enhanced_schematicannon.mixin.ae2.blockentity;
 
 import appeng.blockentity.storage.ChestBlockEntity;
-import com.simibubi.create.content.schematics.requirement.ISpecialBlockEntityItemRequirement;
+import com.simibubi.create.api.schematic.nbt.PartialSafeNBT;
+import com.simibubi.create.api.schematic.requirement.SpecialBlockEntityItemRequirement;
 import com.simibubi.create.content.schematics.requirement.ItemRequirement;
-import com.simibubi.create.foundation.utility.IPartialSafeNBT;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.ItemStack;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Set;
 
 @Mixin(ChestBlockEntity.class)
-public class ChestBlockEntityMixin implements ISpecialBlockEntityItemRequirement, IPartialSafeNBT {
+public class ChestBlockEntityMixin implements SpecialBlockEntityItemRequirement, PartialSafeNBT {
     @Override
     public ItemRequirement getRequiredItems(BlockState state) {
         ChestBlockEntity self = (ChestBlockEntity) (Object) this;

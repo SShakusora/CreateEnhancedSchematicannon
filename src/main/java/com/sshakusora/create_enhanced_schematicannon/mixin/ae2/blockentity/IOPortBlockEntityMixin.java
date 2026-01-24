@@ -2,9 +2,9 @@ package com.sshakusora.create_enhanced_schematicannon.mixin.ae2.blockentity;
 
 import appeng.api.upgrades.IUpgradeInventory;
 import appeng.blockentity.storage.IOPortBlockEntity;
-import com.simibubi.create.content.schematics.requirement.ISpecialBlockEntityItemRequirement;
+import com.simibubi.create.api.schematic.nbt.PartialSafeNBT;
+import com.simibubi.create.api.schematic.requirement.SpecialBlockEntityItemRequirement;
 import com.simibubi.create.content.schematics.requirement.ItemRequirement;
-import com.simibubi.create.foundation.utility.IPartialSafeNBT;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Mixin(IOPortBlockEntity.class)
-public class IOPortBlockEntityMixin implements ISpecialBlockEntityItemRequirement, IPartialSafeNBT {
+public class IOPortBlockEntityMixin implements SpecialBlockEntityItemRequirement, PartialSafeNBT {
     @Override
     public ItemRequirement getRequiredItems(BlockState state) {
         IOPortBlockEntity self = (IOPortBlockEntity) (Object) this;

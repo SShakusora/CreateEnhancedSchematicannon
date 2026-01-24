@@ -4,9 +4,9 @@ import appeng.api.upgrades.IUpgradeInventory;
 import appeng.blockentity.crafting.MolecularAssemblerBlockEntity;
 import appeng.core.definitions.AEItems;
 import appeng.util.inv.AppEngInternalInventory;
-import com.simibubi.create.content.schematics.requirement.ISpecialBlockEntityItemRequirement;
+import com.simibubi.create.api.schematic.nbt.PartialSafeNBT;
+import com.simibubi.create.api.schematic.requirement.SpecialBlockEntityItemRequirement;
 import com.simibubi.create.content.schematics.requirement.ItemRequirement;
-import com.simibubi.create.foundation.utility.IPartialSafeNBT;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Mixin(MolecularAssemblerBlockEntity.class)
-public class MolecularAssemblerBlockEntityMixin implements ISpecialBlockEntityItemRequirement,IPartialSafeNBT {
+public class MolecularAssemblerBlockEntityMixin implements SpecialBlockEntityItemRequirement,PartialSafeNBT {
     @Final
     @Shadow private AppEngInternalInventory gridInv;
 

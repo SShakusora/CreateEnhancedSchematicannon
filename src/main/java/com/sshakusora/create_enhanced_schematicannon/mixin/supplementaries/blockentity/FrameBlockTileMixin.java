@@ -5,6 +5,9 @@ import com.simibubi.create.content.contraptions.StructureTransform;
 import com.simibubi.create.content.schematics.requirement.ISpecialBlockEntityItemRequirement;
 import com.simibubi.create.content.schematics.requirement.ItemRequirement;
 import com.simibubi.create.foundation.utility.IPartialSafeNBT;
+import com.simibubi.create.api.schematic.nbt.PartialSafeNBT;
+import com.simibubi.create.api.schematic.requirement.SpecialBlockEntityItemRequirement;
+import com.simibubi.create.content.schematics.requirement.ItemRequirement;
 import net.mehvahdjukaar.supplementaries.common.block.tiles.FrameBlockTile;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
@@ -16,6 +19,7 @@ import java.util.List;
 
 @Mixin(FrameBlockTile.class)
 public class FrameBlockTileMixin implements ISpecialBlockEntityItemRequirement, IPartialSafeNBT, ITransformableBlockEntity {
+public class FrameBlockTileMixin implements SpecialBlockEntityItemRequirement, PartialSafeNBT {
     @Override
     public ItemRequirement getRequiredItems(BlockState state) {
         FrameBlockTile self = (FrameBlockTile) (Object) this;
