@@ -61,6 +61,7 @@
     "supplementaries.block.FrameBraceBlockMixin",
     "supplementaries.block.PedestalBlockMixin",
     "supplementaries.block.UrnBlockMixin",
+    "supplementaries.blockentity.BlackboardBlockTileMixin",
     "supplementaries.blockentity.FrameBlockTileMixin",
     "vanilla.ForgeChunkSaveMixin"
   ]
