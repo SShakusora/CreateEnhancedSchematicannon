@@ -1,4 +1,4 @@
-package com.sshakusora.create_enhanced_schematicannon.client;
+package com.sshakusora.create_enhanced_schematicannon.event.client;
 
 import com.sshakusora.create_enhanced_schematicannon.CES;
 import net.neoforged.api.distmarker.Dist;

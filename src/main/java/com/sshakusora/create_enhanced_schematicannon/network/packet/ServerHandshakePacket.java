@@ -1,7 +1,7 @@
 package com.sshakusora.create_enhanced_schematicannon.network.packet;
 
 import com.sshakusora.create_enhanced_schematicannon.CES;
-import com.sshakusora.create_enhanced_schematicannon.client.ClientModState;
+import com.sshakusora.create_enhanced_schematicannon.event.client.ClientModState;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;

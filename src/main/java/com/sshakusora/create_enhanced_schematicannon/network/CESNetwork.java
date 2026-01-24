@@ -9,6 +9,7 @@ public class CESNetwork {
     public static void register(RegisterPayloadHandlersEvent event) {
 
         event.registrar("1")
+                .optional()
                 .playToServer(
                         RequestBlockEntityDataPacket.TYPE,
                         RequestBlockEntityDataPacket.STREAM_CODEC,
