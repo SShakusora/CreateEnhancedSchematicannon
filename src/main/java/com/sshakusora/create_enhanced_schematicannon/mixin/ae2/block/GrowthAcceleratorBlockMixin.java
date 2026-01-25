@@ -1,7 +1,7 @@
 package com.sshakusora.create_enhanced_schematicannon.mixin.ae2.block;
 
 import appeng.block.misc.GrowthAcceleratorBlock;
-import com.sshakusora.create_enhanced_schematicannon.util.ae2.RotateMirror;
+import com.sshakusora.create_enhanced_schematicannon.util.RotateMirror;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;

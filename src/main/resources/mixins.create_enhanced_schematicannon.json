@@ -8,6 +8,7 @@
   "server": [
   ],
   "client": [
+    "create.schematic.AddSyncConfig"
   ],
   "mixins": [
     "ae2.block.CableBusBlockMixin",
@@ -28,7 +29,6 @@
     "ae2.block.SpatialIOPortBlockMixin",
     "ae2.block.VibrationChamberBlockMixin",
     "ae2.block.WirelessAccessPointBlockMixin",
-    "ae2.blockentity.CableBusBlockEntityLaunch",
     "ae2.blockentity.CableBusBlockEntityMixin",
     "ae2.blockentity.ChestBlockEntityMixin",
     "ae2.blockentity.CondenserBlockEntityMixin",
@@ -43,11 +43,26 @@
     "ae2.blockentity.accessor.CableBusContainerAccessor",
     "ae2.blockentity.accessor.CableBusStorageAccessor",
     "amendments.blockentity.HangingSignTileExtensionMixin",
+    "chimes.block.BambooWindChimeBlockMixin",
+    "chimes.block.WindChimeBlockMixin",
+    "chimes.blockentity.WindBellBEMixin",
+    "chinjufumod.block.SudareFix",
+    "chinjufumod.block.SudareMixin",
+    "create.block.BlazeBurnerBlockMixin",
+    "create.block.BoilerHeatersFix",
+    "create.debug.FindBlockEntity",
+    "dramaticdoors.block.TallDoorBlockFix",
+    "dramaticdoors.block.TallDoorBlockMixin",
+    "immersive_weathering.block.IcicleBlockLaunch",
+    "integrateddynamics.blockentity.BlockEntityMultipartTickingMixin",
     "moonlight.blockentity.ItemDisplayTileMixin",
+    "quark.block.GrateBlockMixin",
     "supplementaries.block.FrameBlockMixin",
     "supplementaries.block.FrameBraceBlockMixin",
     "supplementaries.block.PedestalBlockMixin",
-    "supplementaries.blockentity.FrameBlockTileLaunch",
-    "supplementaries.blockentity.FrameBlockTileMixin"
+    "supplementaries.block.UrnBlockMixin",
+    "supplementaries.blockentity.BlackboardBlockTileMixin",
+    "supplementaries.blockentity.FrameBlockTileMixin",
+    "vanilla.ForgeChunkSaveMixin"
   ]
 }
