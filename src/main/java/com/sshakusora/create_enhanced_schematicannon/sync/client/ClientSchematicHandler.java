@@ -1,7 +1,5 @@
 package com.sshakusora.create_enhanced_schematicannon.sync.client;
 
-import com.simibubi.create.AllPackets;
-import com.simibubi.create.Create;
 import com.simibubi.create.CreateClient;
 import com.simibubi.create.content.schematics.SchematicExport;
 import com.simibubi.create.content.schematics.client.ClientSchematicLoader;
@@ -79,7 +77,9 @@ public class ClientSchematicHandler {
         LocalPlayer player = Minecraft.getInstance().player;
         SchematicAndQuillHandler handler = CreateClient.SCHEMATIC_AND_QUILL_HANDLER;
         if (result == null) {
-            CreateLang.translate("schematicAndQuill.failed", new Object[0]).style(ChatFormatting.RED).sendStatus(player);
+            if (player != null) {
+                player.displayClientMessage(Component.translatable("create_enhanced_schematicannon.action.sync.fail").withStyle(ChatFormatting.RED), true);
+            }
         } else {
             Path file = result.file();
             CreateLang.translate("schematicAndQuill.saved", new Object[]{file.getFileName().toString()}).sendStatus(player);

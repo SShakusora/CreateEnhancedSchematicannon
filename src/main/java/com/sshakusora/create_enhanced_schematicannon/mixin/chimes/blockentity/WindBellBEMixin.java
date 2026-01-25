@@ -6,8 +6,6 @@ import com.simibubi.create.api.schematic.requirement.SpecialBlockEntityItemRequi
 import com.simibubi.create.content.schematics.requirement.ItemRequirement;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.StringTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;

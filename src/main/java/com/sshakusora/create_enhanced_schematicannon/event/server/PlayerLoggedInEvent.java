@@ -9,6 +9,7 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 @EventBusSubscriber(modid = CES.MODID)
@@ -21,14 +22,15 @@ public class PlayerLoggedInEvent {
     }
 
     @SubscribeEvent
-    public static void onServerTick(ServerTickEvent event) {
+    public static void onServerTick(ServerTickEvent.Post event) {
         if (pending.isEmpty()) return;
-        for (ServerPlayer player : pending) {
+        Iterator<ServerPlayer> it = pending.iterator();
+        while (it.hasNext()) {
+            ServerPlayer player = it.next();
             try {
                 player.connection.send(new ServerHandshakePacket());
             } catch (Exception ignored) {}
+            it.remove();
         }
-
-        pending.clear();
     }
 }
