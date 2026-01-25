@@ -4,7 +4,9 @@ import com.mojang.logging.LogUtils;
 import com.sshakusora.create_enhanced_schematicannon.network.CESNetwork;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
@@ -19,6 +21,10 @@ public class CES
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::setup);
+        ModLoadingContext.get().registerConfig(
+                ModConfig.Type.SERVER,
+                Config.SERVER_SPEC
+        );
     }
 
     private void setup(final FMLCommonSetupEvent event) {
