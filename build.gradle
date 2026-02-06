@@ -158,6 +158,11 @@ dependencies {
     runtimeOnly "curse.maven:common-capabilities-247007:7361876"
     compileOnly "curse.maven:cyclops-core-232758:6864888"
     runtimeOnly "curse.maven:cyclops-core-232758:6864888"
+
+    compileOnly "curse.maven:functional-storage-556861:7061714"
+    runtimeOnly "curse.maven:functional-storage-556861:7061714"
+    compileOnly "curse.maven:titanium-287342:6875285"
+    runtimeOnly "curse.maven:titanium-287342:6875285"
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar
     // The group id is ignored when searching -- in this case, it is "blank"

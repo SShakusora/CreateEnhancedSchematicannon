@@ -63,6 +63,10 @@ public class OptionalMixinPlugin implements IMixinConfigPlugin {
             return LOADED_MODS.contains("integrateddynamics");
         }
 
+        if (mixinClassName.contains(".functionalstorage.")) {
+            return LOADED_MODS.contains("functionalstorage");
+        }
+
         return true;
     }
 
