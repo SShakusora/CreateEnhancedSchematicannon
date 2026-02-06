@@ -3,7 +3,6 @@ package com.sshakusora.create_enhanced_schematicannon.mixin.functionalstorage.bl
 import com.buuz135.functionalstorage.block.tile.DrawerControllerTile;
 import com.buuz135.functionalstorage.util.ConnectedDrawers;
 import com.simibubi.create.api.schematic.nbt.PartialSafeNBT;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import org.spongepowered.asm.mixin.Mixin;
 

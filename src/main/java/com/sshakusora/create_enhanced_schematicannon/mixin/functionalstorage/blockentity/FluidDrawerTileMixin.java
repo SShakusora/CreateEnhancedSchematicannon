@@ -3,7 +3,6 @@ package com.sshakusora.create_enhanced_schematicannon.mixin.functionalstorage.bl
 import com.buuz135.functionalstorage.block.tile.FluidDrawerTile;
 import com.buuz135.functionalstorage.fluid.BigFluidHandler;
 import com.simibubi.create.api.schematic.nbt.PartialSafeNBT;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.fluids.FluidStack;
 import org.spongepowered.asm.mixin.Mixin;
@@ -16,6 +15,7 @@ public class FluidDrawerTileMixin implements PartialSafeNBT {
     @Unique
     private void clearStorage() {
         BigFluidHandler storage = self.getFluidHandler();
+        if (storage == null) return;
         for (BigFluidHandler.CustomFluidTank tank : storage.getTankList()) {
             tank.setFluid(FluidStack.EMPTY);
         }

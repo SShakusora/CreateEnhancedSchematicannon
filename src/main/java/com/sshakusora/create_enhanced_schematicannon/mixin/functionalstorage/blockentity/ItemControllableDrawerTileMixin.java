@@ -14,6 +14,7 @@ public class ItemControllableDrawerTileMixin implements PartialSafeNBT {
     @Unique
     private void clearStorage() {
         IItemHandler storage = self.getStorage();
+        if (storage == null) return;
         for (int i = 0; i < storage.getSlots(); i++) {
             storage.extractItem(i, storage.getStackInSlot(i).getCount(), false);
         }
