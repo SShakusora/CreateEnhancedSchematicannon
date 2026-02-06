@@ -15,6 +15,7 @@ public class FluidDrawerTileMixin implements IPartialSafeNBT {
     @Unique
     private void clearStorage() {
         BigFluidHandler storage = self.getFluidHandler();
+        if (storage == null) return;
         for (BigFluidHandler.CustomFluidTank tank : storage.getTankList()) {
             tank.setFluid(FluidStack.EMPTY);
         }
