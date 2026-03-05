@@ -52,16 +52,17 @@ In the base **Create** mod, the **Schematicannon** is a powerful tool for automa
 
 Below is a list of mods that receive enhanced support through this addon:
 
-| **Mod** | **Description**                                                 |
-| ------------------------------- | ------------------ |
-| [*Applied Energistics 2* ](https://www.curseforge.com/minecraft/mc-mods/applied-energistics-2)             | *Fully Compatible: Cables and BlockEntities now print correctly with full data.*                   |
-| [*Integrated Dynamics*](https://www.curseforge.com/minecraft/mc-mods/integrated-dynamics)              | *Fully Compatible: Logic Cables and parts now print correctly.*      |
-| [*Functional Storage*](https://www.curseforge.com/minecraft/mc-mods/functional-storage)              | *Fully Compatible: Drawers and Controllers print correctly while preserving configurations.*      |
+| **Mod**                                                                                        | **Description**                                                 |
+|------------------------------------------------------------------------------------------------| ------------------ |
+| [*Applied Energistics 2* ](https://www.curseforge.com/minecraft/mc-mods/applied-energistics-2) | *Fully Compatible: Cables and BlockEntities now print correctly with full data.*                   |
+| [*Integrated Dynamics*](https://www.curseforge.com/minecraft/mc-mods/integrated-dynamics)      | *Fully Compatible: Logic Cables and parts now print correctly.*      |
+| [*Functional Storage*](https://www.curseforge.com/minecraft/mc-mods/functional-storage)        | *Fully Compatible: Drawers and Controllers print correctly while preserving configurations.*      |
+| [*AnvilCraft*](https://www.curseforge.com/minecraft/mc-mods/anvilcraft)                   | *Partial Support: Some BlockEntity now print correctly.*      |
 | [*Supplementaries*](https://www.curseforge.com/minecraft/mc-mods/supplementaries)              | *Partial Support: Some BlockEntity now print correctly.*      |
-| [*Amendments*](https://www.curseforge.com/minecraft/mc-mods/amendments)              | *Partial Support: Some BlockEntity now print correctly.*      |
-| [*Quark*](https://www.curseforge.com/minecraft/mc-mods/quark)              | *Partial Support: Some BlockEntity now print correctly.*      |
-| [*Dramatic Doors*](https://www.curseforge.com/minecraft/mc-mods/dramatic-doors)              | *Fully Compatible: Fixed the placement logic for tall and special door types.*      |
-| [*Chimes*](https://www.curseforge.com/minecraft/mc-mods/chimes)              | *Fully Compatible: Fixed the positioning and attachment of all wind chimes.*      |
+| [*Amendments*](https://www.curseforge.com/minecraft/mc-mods/amendments)                        | *Partial Support: Some BlockEntity now print correctly.*      |
+| [*Quark*](https://www.curseforge.com/minecraft/mc-mods/quark)                                  | *Partial Support: Some BlockEntity now print correctly.*      |
+| [*Dramatic Doors*](https://www.curseforge.com/minecraft/mc-mods/dramatic-doors)                | *Fully Compatible: Fixed the placement logic for tall and special door types.*      |
+| [*Chimes*](https://www.curseforge.com/minecraft/mc-mods/chimes)                                | *Fully Compatible: Fixed the positioning and attachment of all wind chimes.*      |
 
 If you encounter a specific mod block that still doesn't print correctly, please report it in the [**Issues**](https://github.com/SShakusora/CreateEnhancedSchematicannon/issues) section!
 
