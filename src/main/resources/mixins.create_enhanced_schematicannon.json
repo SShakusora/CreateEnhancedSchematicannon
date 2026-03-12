@@ -50,6 +50,7 @@
     "chinjufumod.block.SudareMixin",
     "create.block.BoilerHeatersFix",
     "create.debug.FindBlockEntity",
+    "create.schematic.LaunchEntityFix",
     "dramaticdoors.block.TallDoorBlockFix",
     "dramaticdoors.block.TallDoorBlockMixin",
     "functionalstorage.block.DrawerBlockMixin",
@@ -69,6 +70,7 @@
     "supplementaries.blockentity.BlackboardBlockTileMixin",
     "supplementaries.blockentity.FrameBlockTileLaunch",
     "supplementaries.blockentity.FrameBlockTileMixin",
-    "vanilla.ForgeChunkSaveMixin"
+    "vanilla.ForgeChunkSaveMixin",
+    "vanilla.entity.ArmorStandMixin"
   ]
 }
