@@ -51,10 +51,11 @@
     "create.block.BlazeBurnerBlockMixin",
     "create.block.BoilerHeatersFix",
     "create.debug.FindBlockEntity",
+    "create.schematic.LaunchEntityFix",
     "dramaticdoors.block.TallDoorBlockFix",
     "dramaticdoors.block.TallDoorBlockMixin",
-    "functionalstorage.block.DrawerLaunch",
     "functionalstorage.block.DrawerBlockMixin",
+    "functionalstorage.block.DrawerLaunch",
     "functionalstorage.blockentity.ControllableDrawerTileMixin",
     "functionalstorage.blockentity.DrawerControllerTileMixin",
     "functionalstorage.blockentity.FluidDrawerTileMixin",
@@ -69,6 +70,7 @@
     "supplementaries.block.UrnBlockMixin",
     "supplementaries.blockentity.BlackboardBlockTileMixin",
     "supplementaries.blockentity.FrameBlockTileMixin",
-    "vanilla.ForgeChunkSaveMixin"
+    "vanilla.ForgeChunkSaveMixin",
+    "vanilla.entity.ArmorStandMixin"
   ]
 }
