@@ -59,6 +59,8 @@
     "functionalstorage.blockentity.DrawerControllerTileMixin",
     "functionalstorage.blockentity.FluidDrawerTileMixin",
     "functionalstorage.blockentity.ItemControllableDrawerTileMixin",
+    "functionalstorage.schematic.SchematicannonBlockEntityMixin",
+    "functionalstorage.schematic.SchematicPrinterMixin",
     "immersive_weathering.block.IcicleBlockLaunch",
     "integrateddynamics.blockentity.BlockEntityMultipartTickingMixin",
     "moonlight.blockentity.ItemDisplayTileMixin",
