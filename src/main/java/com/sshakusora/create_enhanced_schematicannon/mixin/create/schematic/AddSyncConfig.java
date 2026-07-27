@@ -30,7 +30,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
 
-@Mixin(SchematicPromptScreen.class)
+@Mixin(value = SchematicPromptScreen.class, remap = false)
 public class AddSyncConfig extends Screen {
     @Shadow private EditBox nameField;
 

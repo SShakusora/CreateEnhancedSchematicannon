@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.function.Supplier;
 
-@Mixin(PulseGeneratorBlock.class)
+@Mixin(value = PulseGeneratorBlock.class, remap = false)
 public abstract class PulseGeneratorBlockMixin extends Block {
     @Shadow protected abstract void startOutputting(Level level, BlockPos pos, Supplier<BlockState> stateGetter, PulseGeneratorBlockEntity generator);
 

@@ -12,7 +12,9 @@ import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(Drawer.class)
 public class DrawerMixin extends Block {
-    @Unique Drawer self = (Drawer) (Object) this;
+    @Unique
+    Drawer self = (Drawer) (Object) this;
+
     public DrawerMixin(Properties properties) {
         super(properties);
     }
@@ -25,7 +27,7 @@ public class DrawerMixin extends Block {
             return state.setValue(RotatableBlock.FACING_HORIZONTAL, rotation.rotate(facing));
         } else if (rotationType == RotatableBlock.RotationType.SIX_WAY) {
             Direction facing = state.getValue(RotatableBlock.FACING_ALL);
-            return state.setValue(RotatableBlock.FACING_HORIZONTAL, rotation.rotate(facing));
+            return state.setValue(RotatableBlock.FACING_ALL, rotation.rotate(facing));
         } else if (rotationType == RotatableBlock.RotationType.TWENTY_FOUR_WAY) {
             Direction customFacing = state.getValue(Drawer.FACING_HORIZONTAL_CUSTOM);
             Direction facing = state.getValue(RotatableBlock.FACING_ALL);
@@ -46,7 +48,7 @@ public class DrawerMixin extends Block {
             return state.setValue(RotatableBlock.FACING_HORIZONTAL, mirror.mirror(facing));
         } else if (rotationType == RotatableBlock.RotationType.SIX_WAY) {
             Direction facing = state.getValue(RotatableBlock.FACING_ALL);
-            return state.setValue(RotatableBlock.FACING_HORIZONTAL, mirror.mirror(facing));
+            return state.setValue(RotatableBlock.FACING_ALL, mirror.mirror(facing));
         } else if (rotationType == RotatableBlock.RotationType.TWENTY_FOUR_WAY) {
             Direction customFacing = state.getValue(Drawer.FACING_HORIZONTAL_CUSTOM);
             Direction facing = state.getValue(RotatableBlock.FACING_ALL);
