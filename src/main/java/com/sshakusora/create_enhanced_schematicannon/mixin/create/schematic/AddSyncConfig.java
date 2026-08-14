@@ -1,6 +1,5 @@
 package com.sshakusora.create_enhanced_schematicannon.mixin.create.schematic;
 
-import com.llamalad7.mixinextras.sugar.Local;
 import com.simibubi.create.CreateClient;
 import com.simibubi.create.content.schematics.client.SchematicAndQuillHandler;
 import com.simibubi.create.content.schematics.client.SchematicPromptScreen;
@@ -8,19 +7,20 @@ import com.simibubi.create.foundation.gui.widget.IconButton;
 import com.simibubi.create.foundation.gui.widget.Indicator;
 import com.simibubi.create.foundation.item.TooltipHelper;
 import com.simibubi.create.foundation.utility.CreateLang;
-import com.sshakusora.create_enhanced_schematicannon.event.client.ClientModState;
 import com.sshakusora.create_enhanced_schematicannon.network.packet.client.RequestBlockEntityDataPacket;
 import com.sshakusora.create_enhanced_schematicannon.sync.gui.SyncIcon;
 import com.sshakusora.create_enhanced_schematicannon.sync.gui.VerticalIndicator;
+import net.createmod.catnip.gui.AbstractSimiScreen;
 import net.createmod.catnip.lang.FontHelper;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.EditBox;
-import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
+import net.neoforged.neoforge.network.registration.NetworkRegistry;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -31,7 +31,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.List;
 
 @Mixin(value = SchematicPromptScreen.class, remap = false)
-public class AddSyncConfig extends Screen {
+public abstract class AddSyncConfig extends AbstractSimiScreen {
     @Shadow private EditBox nameField;
 
     @Unique private final Component syncLabel = Component.translatable("create_enhanced_schematicannon.action.sync");
@@ -48,16 +48,8 @@ public class AddSyncConfig extends Screen {
 
     @Unique
     private boolean serverLoaded() {
-//        ClientPacketListener listener = Minecraft.getInstance().getConnection();
-//        if (listener == null) return false;
-//
-//        LocalPlayer player = Minecraft.getInstance().player;
-//        if (player == null) return false;
-//
-//        Connection connection = listener.getConnection();
-//        player.connection
-//        return CESNetwork.CHANNEL.isRemotePresent(connection);
-        return ClientModState.serverHasMod;
+        ClientPacketListener listener = Minecraft.getInstance().getConnection();
+        return listener != null && NetworkRegistry.hasChannel(listener, RequestBlockEntityDataPacket.TYPE.id());
     }
 
     @Unique
@@ -90,7 +82,10 @@ public class AddSyncConfig extends Screen {
     }
 
     @Inject(method = "init", at = @At("TAIL"), remap = false)
-    private void addSyncConfig(CallbackInfo ci, @Local(name = "x") int x, @Local(name = "y") int y) {
+    private void addSyncConfig(CallbackInfo ci) {
+        int x = this.guiLeft;
+        int y = this.guiTop + 2;
+
         this.syncButton = new IconButton(x + 29, y + 53, SyncIcon.I_SYNC);
         this.syncIndicator = new VerticalIndicator(x + 47, y + 53, CommonComponents.EMPTY);
 

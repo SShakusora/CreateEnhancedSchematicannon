@@ -1,10 +1,6 @@
 package com.sshakusora.create_enhanced_schematicannon.compat.functionalstorage;
 
-import com.buuz135.functionalstorage.block.tile.ControllableDrawerTile;
-import com.buuz135.functionalstorage.block.tile.EnderDrawerTile;
-import com.buuz135.functionalstorage.block.tile.FluidDrawerTile;
-import com.buuz135.functionalstorage.block.tile.ItemControllableDrawerTile;
-import com.buuz135.functionalstorage.block.tile.StorageControllerTile;
+import com.buuz135.functionalstorage.block.tile.*;
 import com.buuz135.functionalstorage.fluid.BigFluidHandler;
 import com.hrznstudio.titanium.component.inventory.InventoryComponent;
 import com.sshakusora.create_enhanced_schematicannon.compat.SchematicCompatBootstrap;
